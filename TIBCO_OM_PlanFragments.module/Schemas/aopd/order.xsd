@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/aff/order"	 
+	 xmlns:types="http://www.tibco.com/aff/commontypes"
+	 targetNamespace="http://www.tibco.com/aff/order" 
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified" version="1.1">
+	<xs:import namespace="http://www.tibco.com/aff/commontypes" schemaLocation="commonTypes.xsd"/>
+	<!--  xs:element name="orderType"> -->
+	<xs:complexType name="orderType">
+		<xs:sequence>
+			<xs:element name="orderID">
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="255"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="orderRef">    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="125"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="header" type="headerType" minOccurs="0" />
+			<xs:element name="line" type="lineType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="request" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="orderRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="amendments" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="orderAmendment" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- </xs:element> -->
+	<xs:complexType name="orderRequestType">
+		<xs:sequence>
+			<xs:element name="orderId" minOccurs="0">
+				<xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="125"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="orderRef" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="125"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="header" type="headerRequestType"/>
+			<xs:element name="line" type="lineRequestType" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="headerType">
+		<xs:sequence>
+			<xs:element name="submittedDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="description" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="100"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="customerID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="64"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="subscriberID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="64"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="requiredByDate" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="requiredOnDate" type="xs:dateTime"/>
+			</xs:choice>
+			<xs:element name="orderPriority" minOccurs="0" default="4">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0" />
+						<xs:maxInclusive value="9" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="invoiceAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="deliveryAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="notes" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="100"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="slaID" minOccurs="0" maxOccurs="unbounded" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="pointOfNoReturn" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="status" minOccurs="0">
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="22"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="statusChanged" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="suspended" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="originator" minOccurs="0">
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="planUniqueID" type="xs:string" minOccurs="0"/>
+			<xs:element name="planStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="planExpectedCompletionDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="warning" type="xs:string" minOccurs="0"/>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="headerRequestType">
+		<xs:sequence>
+			<xs:element name="description" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="100"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="customerID">    
+			    	<xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="64"/></xs:restriction></xs:simpleType>
+				</xs:element>
+				<xs:element name="subscriberID">    
+			    	<xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="64"/></xs:restriction></xs:simpleType>
+				</xs:element>
+			</xs:choice>
+			<xs:choice minOccurs="0">
+				<xs:element name="requiredByDate" type="xs:dateTime" minOccurs="0"/>
+				<xs:element name="requiredOnDate" type="xs:dateTime"/>
+			</xs:choice>
+			<xs:element name="orderPriority" minOccurs="0" default="4">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0" />
+						<xs:maxInclusive value="9" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="invoiceAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="deliveryAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="notes" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="100"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="slaID" minOccurs="0" maxOccurs="unbounded" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lineType">
+		<xs:sequence>
+			<xs:element name="lineNumber" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="subscriberID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="64"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="productID" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:minLength value="1"/><xs:maxLength value="255"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="productVersion" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="quantity" type="xs:long"/>
+			<xs:element name="uom" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="45"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="deliveryAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="action" type="xs:string"> </xs:element>
+			<xs:element name="actionMode" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="32"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="requiredByDate" type="xs:dateTime"/>
+				<xs:element name="requiredOnDate" type="xs:dateTime"/>
+			</xs:choice>
+			<xs:element name="linkID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="45"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="inventoryID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="50"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="notes" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="100"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="slaID" minOccurs="0" maxOccurs="unbounded" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="characteristic" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="customerItemID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="64"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="status" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="statusChanged" type="xs:dateTime"/>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lineRequestType">
+		<xs:sequence>
+			<xs:element name="lineNumber" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="subscriberID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="64"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="productID" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:minLength value="1"/><xs:maxLength value="255"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="productVersion" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="quantity" type="xs:long"/>
+			<xs:element name="uom" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="45"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="deliveryAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="action" type="xs:string"> </xs:element>
+			<xs:element name="actionMode" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="requiredByDate" type="xs:dateTime"/>
+				<xs:element name="requiredOnDate" type="xs:dateTime"/>
+			</xs:choice>
+			<xs:element name="linkID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="45"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="inventoryID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="50"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="notes" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="100"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="slaID" minOccurs="0" maxOccurs="unbounded" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="32"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="characteristic" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="customerItemID" minOccurs="0" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="64"/></xs:restriction></xs:simpleType>
+			</xs:element>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderResultSetType">
+	    		<xs:sequence>
+					<xs:element name="currentPageNumber" type="xs:int"></xs:element>
+					<xs:element name="pagesize" type="xs:int"></xs:element>
+					<xs:element name="pagination" type="xs:int"></xs:element>
+					<xs:element name="totalRecordCount" type="xs:int"></xs:element>	
+					<xs:element name="orderResult" type="orderType" minOccurs="0" maxOccurs="unbounded"></xs:element>			
+				</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="OrderResult" type="orderType"/>
+	
+	<xs:element name="OrderResultSet" type="OrderResultSetType"/>
+	
+	<xs:element name="udf">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" >    
+			    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="255"/></xs:restriction></xs:simpleType>
+			</xs:element>
+				<xs:element name="value" type="xs:string"/>
+				<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="characteristic">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" >    
+			        <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="45"/></xs:restriction></xs:simpleType>
+			    </xs:element>
+				<xs:element name="description" >    
+			        <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="255"/></xs:restriction></xs:simpleType>
+			    </xs:element>
+				<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name" >    
+			                    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="45"/></xs:restriction></xs:simpleType>
+			                </xs:element>
+							<xs:element name="type" >    
+			                    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="45"/></xs:restriction></xs:simpleType>
+			                </xs:element>
+							<xs:element name="value" minOccurs="0" >    
+			                    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="45"/></xs:restriction></xs:simpleType>
+			                </xs:element>
+							<xs:element name="valueFrom" minOccurs="0" >    
+			                    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="19"/></xs:restriction></xs:simpleType>
+			                </xs:element>
+							<xs:element name="valueTo"  minOccurs="0" >    
+			                    <xs:simpleType><xs:restriction base="xs:string"><xs:maxLength value="19"/></xs:restriction></xs:simpleType>
+			                </xs:element>
+							<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="orderRequest" type="orderRequestType"/>
+	<xs:element name="orderAmendment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="creationDate" type="xs:dateTime" minOccurs="0"/>
+				<xs:element ref="orderRequest"/>
+				<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="orderAmendmentMetaData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderAmendmentSid" type="xs:int"/>
+				<xs:element name="businessTransactionId" type="xs:string"/>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element name="orderHistorySid" type="xs:string"/>
+				<xs:element name="orderRef" type="xs:string"/>		
+				<xs:element name="corelationId" type="xs:string"/>		
+				<xs:element name="creationDate" type="xs:dateTime"/>				
+				<xs:element name="status" type="xs:string" />
+				<xs:element name="lastStatusChange" type="xs:dateTime" />
+				<xs:element name="extension" type="types:extensionType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	
+	
+	<xs:element name="orderLock">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="token" type="xs:int"/>
+				<xs:element name="orderId" type="xs:string"/>
+				<xs:element name="acquireTimestamp" type="xs:dateTime"/>
+				<xs:element name="lockOwner" type="xs:string"/>				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+</xs:schema>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by Sachin (sachin) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+xmlns:order="http://www.tibco.com/aff/order" 
+xmlns:plan="http://www.tibco.com/aff/plan"  
+xmlns:rs="http://www.tibco.com/aff/aopdservice/result"
+xmlns:ps="http://www.tibco.com/aff/enrichedPlan" 
+xmlns="http://www.tibco.com/aff/orderservice" 
+targetNamespace="http://www.tibco.com/aff/orderservice" 
+elementFormDefault="qualified" attributeFormDefault="unqualified" 
+jaxb:version="2.0" version="1.1">
+<xs:import namespace="http://www.tibco.com/aff/order" schemaLocation="order.xsd" />
+<xs:import namespace="http://www.tibco.com/aff/plan" schemaLocation="plan.xsd" />
+<xs:import namespace="http://www.tibco.com/aff/aopdservice/result"	schemaLocation="aopdResultFault.xsd" />
+
+<xs:element name="SubmitOrderRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="BasicOrderRequestType"></xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="GetGeneratedPlanResponse">	
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="plan" type="plan:planType" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ExternalBusinessTransactionID" type="xs:string"/>
+		</xs:complexType>		
+	</xs:element>
+		
+	<xs:complexType name="BasicOrderRequestType">
+		<xs:sequence>
+				<xs:element name="orderRequest" type="order:orderRequestType"/>
+			</xs:sequence>
+			<xs:attribute name="ExternalBusinessTransactionID" type="xs:string"/>
+	</xs:complexType>
+
+	<xs:element name="PartialPlanRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="BasicOrderRequestType">
+					<xs:sequence>
+				        <xs:element name="planGenerationPhase" type="xs:string"/>
+				    </xs:sequence>
+			    </xs:extension>
+			</xs:complexContent>
+		</xs:complexType>		
+	</xs:element>
+	
+	<xs:element name="PartialPlanResponse">	
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element name="plan" type="plan:planType"/>
+					<xs:element name="message" type="xs:string"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="ExternalBusinessTransactionID" type="xs:string"/>
+		</xs:complexType>			
+	</xs:element>
+
+	<!--xs:element name="PlanScheduleRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="BasicOrderRequestType"></xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="PlanScheduleResponse">	
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element name="planSchedule" type="ps:enrichedPlanSchedule"/>
+					<xs:element name="message" type="xs:string"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="ExternalBusinessTransactionID" type="xs:string"/>
+		</xs:complexType>			
+	</xs:element-->
+</xs:schema>

@@ -1,0 +1,12 @@
+{"records": [
+    {
+        "jsonSchemaLocation": "/TIBCO_OM_PlanFragments.module/Service Descriptors/OrderManagement.json",
+        "conversionType": "generated",
+        "xsdSchemaTargetNamespace": "/T1664193331471Converted/JsonSchema"
+    },
+    {
+        "jsonSchemaLocation": "/TIBCO_OM_PlanFragments.module/Service Descriptors/FOSBatchOrderAPI.json",
+        "conversionType": "generated",
+        "xsdSchemaTargetNamespace": "/T1664212569773Converted/JsonSchema"
+    }
+]}

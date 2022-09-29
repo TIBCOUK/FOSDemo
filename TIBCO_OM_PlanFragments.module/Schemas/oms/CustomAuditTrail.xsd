@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.tibco.com/fom/customAuditTrail" targetNamespace="http://www.tibco.com/fom/customAuditTrail"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+
+
+	<xs:element name="AuditTrailRequest" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="AuditTrailMessage" type="AuditTrailMessage"  maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="AuditTrailResponse" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="message" type="xs:string"/>
+				<xs:element name="code" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:complexType name="AuditTrailMessage">		
+			<xs:sequence>
+				<xs:element name="orderRef" type="string125" />
+				<xs:choice>
+					<xs:element name="order" type="orderType" />
+					<xs:element name="plan" type="planType" />
+					<xs:element name="planItem" type="planItemType" />
+					<xs:element name="orderLine" type="orderLineType" />
+					<xs:element name="custom" type="customMessageType" />
+				</xs:choice>
+			</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="planType">
+		<xs:complexContent>
+
+			<xs:extension base="auditMessage">
+				<xs:sequence>
+					<xs:element name="planId" type="string255" />
+				</xs:sequence>
+			</xs:extension>
+
+		</xs:complexContent>
+
+	</xs:complexType>
+
+	<xs:complexType name="planItemType">
+		<xs:complexContent>
+			<xs:extension base="auditMessage">
+				<xs:sequence>
+					<xs:element name="planId" type="string255" />
+					<xs:element name="planItemId" type="string255" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="orderLineType">
+		<xs:complexContent>
+			<xs:extension base="auditMessage">
+				<xs:sequence>
+					<xs:element name="orderLineNumber" type="string32" />
+					
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="orderType">
+		<xs:complexContent>
+			<xs:extension base="auditMessage">
+
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="customMessageType">
+		<xs:complexContent>
+			<xs:extension base="auditMessage">
+			<xs:sequence>
+				<xs:element name="planId" type="string255" minOccurs="0" />
+				<xs:element name="planItemId" type="string255" minOccurs="0" />
+				<xs:element name="orderLineNumber" type="string32"
+					minOccurs="0" />
+				<xs:element name="type" type="string32" />
+			</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+
+
+	<xs:complexType name="auditMessage">
+		<xs:sequence>
+			<xs:element name="auditMessage" type="string4000" />
+
+			<xs:element name="messageType">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="INFO" />
+						<xs:enumeration value="ERROR" />
+						<xs:enumeration value="DEBUG" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="origin" type="string100" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="string32">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="string100">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="string125">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="125" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="string255">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="string4000">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4000" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+</xs:schema>

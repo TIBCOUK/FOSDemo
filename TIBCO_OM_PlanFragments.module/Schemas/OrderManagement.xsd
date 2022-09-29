@@ -1,0 +1,1196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="/T1664193331471Converted/JsonSchema" xmlns:tns="/T1664193331471Converted/JsonSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Message" type="tns:Message"/>
+    <xs:complexType name="Message">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element minOccurs="0" name="lineNumber" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="udfs" type="tns:MessageUdfs"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="AddressType" type="tns:AddressType"/>
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element name="country" type="xs:string"/>
+            <xs:element name="line1" type="xs:string"/>
+            <xs:element minOccurs="0" name="line2" type="xs:string"/>
+            <xs:element minOccurs="0" name="line3" type="xs:string"/>
+            <xs:element name="locality" type="xs:string"/>
+            <xs:element name="postCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="region" type="xs:string"/>
+            <xs:element minOccurs="0" name="supplementaryLocation" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem_dependentIds_items" type="tns:PlanItem_dependentIds_items"/>
+    <xs:simpleType name="PlanItem_dependentIds_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PlanItem_udfs" type="tns:PlanItem_udfs"/>
+    <xs:complexType name="PlanItem_udfs">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItem_udfs" type="tns:Udf"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="HeaderRequest" type="tns:HeaderRequest"/>
+    <xs:complexType name="HeaderRequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="customerID" type="xs:string"/>
+            <xs:element minOccurs="0" name="deliveryAddress" type="tns:AddressType"/>
+            <xs:element minOccurs="0" name="description" type="xs:string"/>
+            <xs:element minOccurs="0" name="extension" type="tns:ExtensionType"/>
+            <xs:element minOccurs="0" name="invoiceAddress" type="tns:AddressType"/>
+            <xs:element minOccurs="0" name="notes" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderPriority" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="requiredByDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="requiredOnDate" type="xs:dateTime"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="slaID" type="xs:string"/>
+            <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="udf" type="tns:OrderUdf"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="DependencyPoint_planID" type="tns:DependencyPoint_planID"/>
+    <xs:simpleType name="DependencyPoint_planID">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemExecuteResponse_completed" type="tns:PlanItemExecuteResponse_completed"/>
+    <xs:simpleType name="PlanItemExecuteResponse_completed">
+        <xs:restriction base="xs:boolean"/>
+    </xs:simpleType>
+    <xs:element name="Line_quantity" type="tns:Line_quantity"/>
+    <xs:simpleType name="Line_quantity">
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+    <xs:element name="Dependency_statusChanged" type="tns:Dependency_statusChanged"/>
+    <xs:simpleType name="Dependency_statusChanged">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemOrderLine" type="tns:PlanItemOrderLine"/>
+    <xs:complexType name="PlanItemOrderLine">
+        <xs:sequence>
+            <xs:element name="eol" type="xs:boolean"/>
+            <xs:element name="orderLineNumber" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Line_requiredByDate" type="tns:Line_requiredByDate"/>
+    <xs:simpleType name="Line_requiredByDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="OrderRequest_line" type="tns:OrderRequest_line"/>
+    <xs:complexType name="OrderRequest_line">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="OrderRequest_line" type="tns:LineRequest"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetOrderExecutionPlanResponse_description" type="tns:GetOrderExecutionPlanResponse_description"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_description">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="SuspendOrderResponse_orderRef" type="tns:SuspendOrderResponse_orderRef"/>
+    <xs:simpleType name="SuspendOrderResponse_orderRef">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="OrderAmendment" type="tns:OrderAmendment"/>
+    <xs:complexType name="OrderAmendment">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="orderRequest" type="tns:OrderRequest"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="DependencyTime_absoluteTime" type="tns:DependencyTime_absoluteTime"/>
+    <xs:simpleType name="DependencyTime_absoluteTime">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="Line_requiredOnDate" type="tns:Line_requiredOnDate"/>
+    <xs:simpleType name="Line_requiredOnDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="GenericOrderFaultOrderFaultBodyFault" type="tns:GenericOrderFaultOrderFaultBodyFault"/>
+    <xs:complexType name="GenericOrderFaultOrderFaultBodyFault">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="detail" type="tns:GenericOrderFaultOrderFaultBodyFaultDetail"/>
+            <xs:element minOccurs="0" name="faultactor" type="xs:string"/>
+            <xs:element minOccurs="0" name="faultcode" type="xs:string"/>
+            <xs:element minOccurs="0" name="faultstring" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemExecuteResponse_correlationId" type="tns:PlanItemExecuteResponse_correlationId"/>
+    <xs:simpleType name="PlanItemExecuteResponse_correlationId">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="FeasibilityReply_message" type="tns:FeasibilityReply_message"/>
+    <xs:complexType name="FeasibilityReply_message">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="FeasibilityReply_message" type="tns:Message"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PreQualificationFailedReply_message" type="tns:PreQualificationFailedReply_message"/>
+    <xs:complexType name="PreQualificationFailedReply_message">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PreQualificationFailedReply_message" type="tns:Message"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Dependency_readyTime" type="tns:Dependency_readyTime"/>
+    <xs:simpleType name="Dependency_readyTime">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="PreQualificationFailedReply" type="tns:PreQualificationFailedReply"/>
+    <xs:complexType name="PreQualificationFailedReply">
+        <xs:sequence>
+            <xs:element name="resultStatus" type="tns:ResultStatus"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+            <xs:element minOccurs="0" name="withdraw" type="tns:Withdraw"/>
+            <xs:element minOccurs="0" name="retryFeasibility" type="tns:RetryFeasibility"/>
+            <xs:element minOccurs="0" name="retryOPD" type="tns:RetryOPD"/>
+            <xs:element minOccurs="0" name="orderRequest" type="tns:OrderRequest"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="message" type="tns:Message"/>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="correlationID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="SuspendOrderResponse" type="tns:SuspendOrderResponse"/>
+    <xs:complexType name="SuspendOrderResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Line" type="tns:Line"/>
+    <xs:complexType name="Line">
+        <xs:sequence>
+            <xs:element name="action" type="xs:string"/>
+            <xs:element minOccurs="0" name="actionMode" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="characteristics" type="tns:OrderCharacteristic"/>
+            <xs:element minOccurs="0" name="customerItemID" type="xs:string"/>
+            <xs:element minOccurs="0" name="deliveryAddress" type="tns:AddressType"/>
+            <xs:element minOccurs="0" name="extension" type="tns:ExtensionType"/>
+            <xs:element minOccurs="0" name="inventoryID" type="xs:string"/>
+            <xs:element name="lineNumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="linkID" type="xs:string"/>
+            <xs:element minOccurs="0" name="notes" type="xs:string"/>
+            <xs:element name="productID" type="xs:string"/>
+            <xs:element minOccurs="0" name="productVersion" type="xs:string"/>
+            <xs:element name="quantity" type="xs:long"/>
+            <xs:element name="requiredByDate" type="xs:dateTime"/>
+            <xs:element name="requiredOnDate" type="xs:dateTime"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="slaID" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="statusChanged" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="udf" type="tns:OrderUdf"/>
+            <xs:element name="uom" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem_childIds" type="tns:PlanItem_childIds"/>
+    <xs:complexType name="PlanItem_childIds">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItem_childIds" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Header_udf" type="tns:Header_udf"/>
+    <xs:complexType name="Header_udf">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Header_udf" type="tns:OrderUdf"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Amendments_orderAmendments" type="tns:Amendments_orderAmendments"/>
+    <xs:complexType name="Amendments_orderAmendments">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Amendments_orderAmendments" type="tns:OrderAmendment"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LineRequest_udf" type="tns:LineRequest_udf"/>
+    <xs:complexType name="LineRequest_udf">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="LineRequest_udf" type="tns:OrderUdf"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Header_requiredOnDate" type="tns:Header_requiredOnDate"/>
+    <xs:simpleType name="Header_requiredOnDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="GetAuditTrailResponse" type="tns:GetAuditTrailResponse"/>
+    <xs:complexType name="GetAuditTrailResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="auditTrails" type="tns:AuditTrail"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem_milestones" type="tns:PlanItem_milestones"/>
+    <xs:complexType name="PlanItem_milestones">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItem_milestones" type="tns:PlanItemMilestone"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetOrderExecutionPlanResponse_status" type="tns:GetOrderExecutionPlanResponse_status"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_status">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="Line_udf" type="tns:Line_udf"/>
+    <xs:complexType name="Line_udf">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Line_udf" type="tns:OrderUdf"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Line_slaID_items" type="tns:Line_slaID_items"/>
+    <xs:simpleType name="Line_slaID_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="GetOrderExecutionPlanResponse_planStartMillis" type="tns:GetOrderExecutionPlanResponse_planStartMillis"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_planStartMillis">
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+    <xs:element name="Line_characteristics" type="tns:Line_characteristics"/>
+    <xs:complexType name="Line_characteristics">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Line_characteristics" type="tns:OrderCharacteristic"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="HeaderRequest_requiredOnDate" type="tns:HeaderRequest_requiredOnDate"/>
+    <xs:simpleType name="HeaderRequest_requiredOnDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="GetOrderExecutionPlanResponse_udfs" type="tns:GetOrderExecutionPlanResponse_udfs"/>
+    <xs:complexType name="GetOrderExecutionPlanResponse_udfs">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="GetOrderExecutionPlanResponse_udfs" type="tns:Udf"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem_startTimestamp" type="tns:PlanItem_startTimestamp"/>
+    <xs:simpleType name="PlanItem_startTimestamp">
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+    <xs:element name="DependencyPoint_end" type="tns:DependencyPoint_end"/>
+    <xs:complexType name="DependencyPoint_end">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="PlanFragment_section" type="tns:PlanFragment_section"/>
+    <xs:complexType name="PlanFragment_section">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanFragment_section" type="tns:Section"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="DependencyExternal" type="tns:DependencyExternal"/>
+    <xs:complexType name="DependencyExternal">
+        <xs:sequence>
+            <xs:element name="eventId" type="xs:string"/>
+            <xs:element name="eventName" type="xs:string"/>
+            <xs:element minOccurs="0" name="eventTime" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderAmendment_creationDate" type="tns:OrderAmendment_creationDate"/>
+    <xs:simpleType name="OrderAmendment_creationDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="PerformBulkOrderActionRequest_orderID" type="tns:PerformBulkOrderActionRequest_orderID"/>
+    <xs:complexType name="PerformBulkOrderActionRequest_orderID">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PerformBulkOrderActionRequest_orderID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderRequest" type="tns:OrderRequest"/>
+    <xs:complexType name="OrderRequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="extension" type="tns:ExtensionType"/>
+            <xs:element name="header" type="tns:HeaderRequest"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="line" type="tns:LineRequest"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Message_udfs" type="tns:Message_udfs"/>
+    <xs:complexType name="Message_udfs">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Message_udfs" type="tns:MessageUdfs"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanFragmentModelRetry" type="tns:PlanFragmentModelRetry"/>
+    <xs:complexType name="PlanFragmentModelRetry">
+        <xs:sequence>
+            <xs:element name="retryCount" type="xs:int"/>
+            <xs:element name="retryDelay" type="xs:long"/>
+            <xs:element name="retryFailed" type="xs:boolean"/>
+            <xs:element name="retryOverride" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="CancelOrderRequest" type="tns:CancelOrderRequest"/>
+    <xs:complexType name="CancelOrderRequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderID" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+            <xs:element minOccurs="0" name="rollback" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LineRequest_quantity" type="tns:LineRequest_quantity"/>
+    <xs:simpleType name="LineRequest_quantity">
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemExecuteResponse_planItemId" type="tns:PlanItemExecuteResponse_planItemId"/>
+    <xs:simpleType name="PlanItemExecuteResponse_planItemId">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="MilestoneNotifyRequest" type="tns:MilestoneNotifyRequest"/>
+    <xs:complexType name="MilestoneNotifyRequest">
+        <xs:sequence>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+            <xs:element name="planID" type="xs:string"/>
+            <xs:element name="planItemID" type="xs:string"/>
+            <xs:element name="milestoneID" type="xs:string"/>
+            <xs:element name="businessTransactionID" type="xs:string"/>
+            <xs:element name="correlationID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="HeaderRequest_requiredByDate" type="tns:HeaderRequest_requiredByDate"/>
+    <xs:simpleType name="HeaderRequest_requiredByDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="Section" type="tns:Section"/>
+    <xs:complexType name="Section">
+        <xs:sequence>
+            <xs:element name="endMilestoneID" type="xs:string"/>
+            <xs:element minOccurs="0" name="maximumDuration" type="xs:long"/>
+            <xs:element name="startMilestoneID" type="xs:string"/>
+            <xs:element minOccurs="0" name="typicalDuration" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="MessageUdfs" type="tns:MessageUdfs"/>
+    <xs:complexType name="MessageUdfs">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="HeaderRequest_udf" type="tns:HeaderRequest_udf"/>
+    <xs:complexType name="HeaderRequest_udf">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="HeaderRequest_udf" type="tns:OrderUdf"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Header_planExpectedCompletionDate" type="tns:Header_planExpectedCompletionDate"/>
+    <xs:simpleType name="Header_planExpectedCompletionDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="Line_slaID" type="tns:Line_slaID"/>
+    <xs:complexType name="Line_slaID">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Line_slaID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GenericOrderFaultOrderFault" type="tns:GenericOrderFaultOrderFault"/>
+    <xs:complexType name="GenericOrderFaultOrderFault">
+        <xs:sequence>
+            <xs:element name="Body" type="tns:GenericOrderFaultOrderFaultBody"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="SuspendOrderResponse_message" type="tns:SuspendOrderResponse_message"/>
+    <xs:simpleType name="SuspendOrderResponse_message">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="Complete" type="tns:Complete"/>
+    <xs:complexType name="Complete">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="PlanItemMilestone_statusChanged" type="tns:PlanItemMilestone_statusChanged"/>
+    <xs:simpleType name="PlanItemMilestone_statusChanged">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="PerformBulkOrderActionRequest_orderID_items" type="tns:PerformBulkOrderActionRequest_orderID_items"/>
+    <xs:simpleType name="PerformBulkOrderActionRequest_orderID_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="OrderResultRequest" type="tns:OrderResultRequest"/>
+    <xs:complexType name="OrderResultRequest">
+        <xs:sequence>
+            <xs:element name="orderRequest" type="tns:OrderRequest"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GenericOrderFaultOrderFaultBody" type="tns:GenericOrderFaultOrderFaultBody"/>
+    <xs:complexType name="GenericOrderFaultOrderFaultBody">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="Fault" type="tns:GenericOrderFaultOrderFaultBodyFault"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderCharacteristicValues" type="tns:OrderCharacteristicValues"/>
+    <xs:complexType name="OrderCharacteristicValues">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="extension" type="tns:ExtensionType"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element minOccurs="0" name="value" type="xs:string"/>
+            <xs:element minOccurs="0" name="valueFrom" type="xs:string"/>
+            <xs:element minOccurs="0" name="valueTo" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderResult_lines" type="tns:OrderResult_lines"/>
+    <xs:complexType name="OrderResult_lines">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="OrderResult_lines" type="tns:Line"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem_endTimestamp" type="tns:PlanItem_endTimestamp"/>
+    <xs:simpleType name="PlanItem_endTimestamp">
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+    <xs:element name="PlanFragmentModelRetry_retryCount" type="tns:PlanFragmentModelRetry_retryCount"/>
+    <xs:simpleType name="PlanFragmentModelRetry_retryCount">
+        <xs:restriction base="xs:int"/>
+    </xs:simpleType>
+    <xs:element name="Header_submittedDate" type="tns:Header_submittedDate"/>
+    <xs:simpleType name="Header_submittedDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="GetOrderExecutionPlanResponse_planStartDate" type="tns:GetOrderExecutionPlanResponse_planStartDate"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_planStartDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="PlanItem_parentIds" type="tns:PlanItem_parentIds"/>
+    <xs:complexType name="PlanItem_parentIds">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItem_parentIds" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderResult" type="tns:OrderResult"/>
+    <xs:complexType name="OrderResult">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="amendments" type="tns:Amendments"/>
+            <xs:element name="header" type="tns:Header"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="lines" type="tns:Line"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderResultRequest" type="tns:OrderResultRequest"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetOrderExecutionPlanResponse_statusChanged" type="tns:GetOrderExecutionPlanResponse_statusChanged"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_statusChanged">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="GetOrderExecutionPlanResponse_originator" type="tns:GetOrderExecutionPlanResponse_originator"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_originator">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PlanItem_siblingIds" type="tns:PlanItem_siblingIds"/>
+    <xs:complexType name="PlanItem_siblingIds">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItem_siblingIds" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Withdraw" type="tns:Withdraw"/>
+    <xs:complexType name="Withdraw">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="Section_maximumDuration" type="tns:Section_maximumDuration"/>
+    <xs:simpleType name="Section_maximumDuration">
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+    <xs:element name="AmendOrderResponse" type="tns:AmendOrderResponse"/>
+    <xs:complexType name="AmendOrderResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+            <xs:element minOccurs="0" name="resultStatus" type="tns:ResultStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ActivateOrderRequest" type="tns:ActivateOrderRequest"/>
+    <xs:complexType name="ActivateOrderRequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderID" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemFailedReply" type="tns:PlanItemFailedReply"/>
+    <xs:complexType name="PlanItemFailedReply">
+        <xs:sequence>
+            <xs:element name="resultStatus" type="tns:ResultStatus"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+            <xs:element name="planID" type="xs:string"/>
+            <xs:element name="planItemID" type="xs:string"/>
+            <xs:element minOccurs="0" name="retry" type="tns:Retry"/>
+            <xs:element minOccurs="0" name="resume" type="tns:Resume"/>
+            <xs:element minOccurs="0" name="complete" type="tns:Complete"/>
+            <xs:element minOccurs="0" name="error" type="tns:Error"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="message" type="tns:Message"/>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="correlationID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemMilestone_description" type="tns:PlanItemMilestone_description"/>
+    <xs:simpleType name="PlanItemMilestone_description">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PerformBulkOrderActionRequest_orderRef_items" type="tns:PerformBulkOrderActionRequest_orderRef_items"/>
+    <xs:simpleType name="PerformBulkOrderActionRequest_orderRef_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PerformBulkOrderActionRequest_action" type="tns:PerformBulkOrderActionRequest_action"/>
+    <xs:simpleType name="PerformBulkOrderActionRequest_action">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="LineRequest_slaID_items" type="tns:LineRequest_slaID_items"/>
+    <xs:simpleType name="LineRequest_slaID_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="Line_statusChanged" type="tns:Line_statusChanged"/>
+    <xs:simpleType name="Line_statusChanged">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="SubmitOrderResponse" type="tns:SubmitOrderResponse"/>
+    <xs:complexType name="SubmitOrderResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+            <xs:element minOccurs="0" name="resultStatus" type="tns:ResultStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Retry" type="tns:Retry"/>
+    <xs:complexType name="Retry">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="Amendments" type="tns:Amendments"/>
+    <xs:complexType name="Amendments">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="orderAmendments" type="tns:OrderAmendment"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem_siblingIds_items" type="tns:PlanItem_siblingIds_items"/>
+    <xs:simpleType name="PlanItem_siblingIds_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="SubmitOrderRequest" type="tns:SubmitOrderRequest"/>
+    <xs:complexType name="SubmitOrderRequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element name="orderRequest" type="tns:OrderRequest"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Header_slaID_items" type="tns:Header_slaID_items"/>
+    <xs:simpleType name="Header_slaID_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="ResultStatus" type="tns:ResultStatus"/>
+    <xs:complexType name="ResultStatus">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element minOccurs="0" name="component" type="xs:string"/>
+            <xs:element name="deployment" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="operation" type="xs:string"/>
+            <xs:element name="service" type="xs:string"/>
+            <xs:element name="severity" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Resume" type="tns:Resume"/>
+    <xs:complexType name="Resume">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="GetOrderExecutionPlanResponse_orderID" type="tns:GetOrderExecutionPlanResponse_orderID"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_orderID">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="Header_requiredByDate" type="tns:Header_requiredByDate"/>
+    <xs:simpleType name="Header_requiredByDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="Header" type="tns:Header"/>
+    <xs:complexType name="Header">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="customerID" type="xs:string"/>
+            <xs:element minOccurs="0" name="deliveryAddress" type="tns:AddressType"/>
+            <xs:element minOccurs="0" name="description" type="xs:string"/>
+            <xs:element minOccurs="0" name="extension" type="tns:ExtensionType"/>
+            <xs:element minOccurs="0" name="invoiceAddress" type="tns:AddressType"/>
+            <xs:element minOccurs="0" name="notes" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderPriority" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="originator" type="xs:string"/>
+            <xs:element minOccurs="0" name="planExpectedCompletionDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="planStatus" type="xs:string"/>
+            <xs:element minOccurs="0" name="planUniqueID" type="xs:string"/>
+            <xs:element minOccurs="0" name="pointOfNoReturn" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="requiredByDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="requiredOnDate" type="xs:dateTime"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="slaID" type="xs:string"/>
+            <xs:element minOccurs="0" name="status" type="xs:string"/>
+            <xs:element minOccurs="0" name="statusChanged" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="submittedDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+            <xs:element minOccurs="0" name="suspended" type="xs:boolean"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="udf" type="tns:OrderUdf"/>
+            <xs:element minOccurs="0" name="warning" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ExtensionType" type="tns:ExtensionType"/>
+    <xs:complexType name="ExtensionType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="any" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Dependency_type" type="tns:Dependency_type"/>
+    <xs:simpleType name="Dependency_type">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="SuspendOrderResponse_externalBusinessTransactionID" type="tns:SuspendOrderResponse_externalBusinessTransactionID"/>
+    <xs:simpleType name="SuspendOrderResponse_externalBusinessTransactionID">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="SuspendOrderResponse_orderID" type="tns:SuspendOrderResponse_orderID"/>
+    <xs:simpleType name="SuspendOrderResponse_orderID">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="LineRequest_requiredOnDate" type="tns:LineRequest_requiredOnDate"/>
+    <xs:simpleType name="LineRequest_requiredOnDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="OMHTTPExceptionHandler_code" type="tns:OMHTTPExceptionHandler_code"/>
+    <xs:simpleType name="OMHTTPExceptionHandler_code">
+        <xs:restriction base="xs:int"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemExecuteResponse_orderId" type="tns:PlanItemExecuteResponse_orderId"/>
+    <xs:simpleType name="PlanItemExecuteResponse_orderId">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="HeaderRequest_slaID_items" type="tns:HeaderRequest_slaID_items"/>
+    <xs:simpleType name="HeaderRequest_slaID_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PerformBulkOrderActionResponse_timestamp" type="tns:PerformBulkOrderActionResponse_timestamp"/>
+    <xs:simpleType name="PerformBulkOrderActionResponse_timestamp">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemSuspendReply" type="tns:PlanItemSuspendReply"/>
+    <xs:complexType name="PlanItemSuspendReply">
+        <xs:sequence>
+            <xs:element name="resultStatus" type="tns:ResultStatus"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+            <xs:element name="planID" type="xs:string"/>
+            <xs:element name="planItemID" type="xs:string"/>
+            <xs:element minOccurs="0" name="completed" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="success" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="correlationID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderCharacteristic" type="tns:OrderCharacteristic"/>
+    <xs:complexType name="OrderCharacteristic">
+        <xs:sequence>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element minOccurs="0" name="extension" type="tns:ExtensionType"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="value" type="tns:OrderCharacteristicValues"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PerformBulkOrderActionRequest_orderRef" type="tns:PerformBulkOrderActionRequest_orderRef"/>
+    <xs:complexType name="PerformBulkOrderActionRequest_orderRef">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PerformBulkOrderActionRequest_orderRef" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemExecuteResponse_success" type="tns:PlanItemExecuteResponse_success"/>
+    <xs:simpleType name="PlanItemExecuteResponse_success">
+        <xs:restriction base="xs:boolean"/>
+    </xs:simpleType>
+    <xs:element name="WithdrawOrderResponse" type="tns:WithdrawOrderResponse"/>
+    <xs:complexType name="WithdrawOrderResponse">
+        <xs:sequence>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemMilestone_dependencies" type="tns:PlanItemMilestone_dependencies"/>
+    <xs:complexType name="PlanItemMilestone_dependencies">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItemMilestone_dependencies" type="tns:Dependency"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ExtensionType_any" type="tns:ExtensionType_any"/>
+    <xs:complexType name="ExtensionType_any">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="ExtensionType_any" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemExecuteResponse_typicalSLAViolated" type="tns:PlanItemExecuteResponse_typicalSLAViolated"/>
+    <xs:complexType name="PlanItemExecuteResponse_typicalSLAViolated">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="AuditTrail" type="tns:AuditTrail"/>
+    <xs:complexType name="AuditTrail">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="dateCreated" type="xs:dateTime"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="messageType" type="xs:string"/>
+            <xs:element name="origin" type="xs:string"/>
+            <xs:element name="refId" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemExecuteResponse_maximumSLAViolated" type="tns:PlanItemExecuteResponse_maximumSLAViolated"/>
+    <xs:complexType name="PlanItemExecuteResponse_maximumSLAViolated">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="GetOrderExecutionPlanResponse" type="tns:GetOrderExecutionPlanResponse"/>
+    <xs:complexType name="GetOrderExecutionPlanResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="description" type="xs:string"/>
+            <xs:element minOccurs="0" name="isAmendment" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="orderID" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+            <xs:element name="originator" type="xs:string"/>
+            <xs:element name="planCreationDate" type="xs:dateTime"/>
+            <xs:element name="planID" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="planItems" type="tns:PlanItem"/>
+            <xs:element minOccurs="0" name="planStartDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="planStartMillis" type="xs:long"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="statusChanged" type="xs:dateTime"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="udfs" type="tns:Udf"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem_childIds_items" type="tns:PlanItem_childIds_items"/>
+    <xs:simpleType name="PlanItem_childIds_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="FeasibilityReply" type="tns:FeasibilityReply"/>
+    <xs:complexType name="FeasibilityReply">
+        <xs:sequence>
+            <xs:element name="resultStatus" type="tns:ResultStatus"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+            <xs:element minOccurs="0" name="completed" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="passed" type="xs:boolean"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="message" type="tns:Message"/>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="correlationID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem_statusChanged" type="tns:PlanItem_statusChanged"/>
+    <xs:simpleType name="PlanItem_statusChanged">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="HeaderRequest_subscriberID" type="tns:HeaderRequest_subscriberID"/>
+    <xs:simpleType name="HeaderRequest_subscriberID">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="GetOrderExecutionPlanResponse_planCreationDate" type="tns:GetOrderExecutionPlanResponse_planCreationDate"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_planCreationDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="CancelOrderResponse" type="tns:CancelOrderResponse"/>
+    <xs:complexType name="CancelOrderResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="message" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderID" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PerformBulkOrderActionRequest" type="tns:PerformBulkOrderActionRequest"/>
+    <xs:complexType name="PerformBulkOrderActionRequest">
+        <xs:sequence>
+            <xs:element name="action" type="xs:string"/>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="orderRef" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="orderID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemExecuteResponse_planId" type="tns:PlanItemExecuteResponse_planId"/>
+    <xs:simpleType name="PlanItemExecuteResponse_planId">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="HeaderRequest_slaID" type="tns:HeaderRequest_slaID"/>
+    <xs:complexType name="HeaderRequest_slaID">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="HeaderRequest_slaID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="RetryFeasibility" type="tns:RetryFeasibility"/>
+    <xs:complexType name="RetryFeasibility">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="PlanItemExecuteResponse_messages" type="tns:PlanItemExecuteResponse_messages"/>
+    <xs:complexType name="PlanItemExecuteResponse_messages">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItemExecuteResponse_messages" type="tns:Message"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ExtensionType_any_items" type="tns:ExtensionType_any_items"/>
+    <xs:simpleType name="ExtensionType_any_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemExecuteResponse_cancelled" type="tns:PlanItemExecuteResponse_cancelled"/>
+    <xs:simpleType name="PlanItemExecuteResponse_cancelled">
+        <xs:restriction base="xs:boolean"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemExecuteResponse" type="tns:PlanItemExecuteResponse"/>
+    <xs:complexType name="PlanItemExecuteResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="businessTransactionId" type="xs:string"/>
+            <xs:element minOccurs="0" name="cancelled" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="completed" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="correlationId" type="xs:string"/>
+            <xs:element minOccurs="0" name="maximumSLAViolated">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="messages" type="tns:Message"/>
+            <xs:element minOccurs="0" name="orderId" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+            <xs:element name="planId" type="xs:string"/>
+            <xs:element name="planItemId" type="xs:string"/>
+            <xs:element name="resultStatus" type="tns:ResultStatus"/>
+            <xs:element minOccurs="0" name="success" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="typicalSLAViolated">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LineRequest_requiredByDate" type="tns:LineRequest_requiredByDate"/>
+    <xs:simpleType name="LineRequest_requiredByDate">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="PlanFragment" type="tns:PlanFragment"/>
+    <xs:complexType name="PlanFragment">
+        <xs:sequence>
+            <xs:element name="planFragmentID" type="xs:string"/>
+            <xs:element name="planFragmentName" type="xs:string"/>
+            <xs:element minOccurs="0" name="planFragmentVersion" type="xs:string"/>
+            <xs:element minOccurs="0" name="owner" type="xs:string"/>
+            <xs:element minOccurs="0" name="record_Type" type="xs:string"/>
+            <xs:element name="errorHandler" type="xs:string"/>
+            <xs:element minOccurs="0" name="retry" type="tns:PlanFragmentModelRetry"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="section" type="tns:Section"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="HeaderRequest_customerID" type="tns:HeaderRequest_customerID"/>
+    <xs:simpleType name="HeaderRequest_customerID">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="GetAuditTrailResponse_auditTrails" type="tns:GetAuditTrailResponse_auditTrails"/>
+    <xs:complexType name="GetAuditTrailResponse_auditTrails">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="GetAuditTrailResponse_auditTrails" type="tns:AuditTrail"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem" type="tns:PlanItem"/>
+    <xs:complexType name="PlanItem">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="orderLines" type="tns:PlanItemOrderLine"/>
+            <xs:element name="planItemID" type="xs:string"/>
+            <xs:element name="statusChanged" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="planItemName" type="xs:string"/>
+            <xs:element minOccurs="0" name="description" type="xs:string"/>
+            <xs:element minOccurs="0" name="cancelled" type="xs:boolean"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="childIds" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="dependentIds" type="xs:string"/>
+            <xs:element minOccurs="0" name="endTimestamp" type="xs:long"/>
+            <xs:element minOccurs="0" name="isNoReciprocalAction" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="isNonExecuting" type="xs:boolean"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="parentIds" type="xs:string"/>
+            <xs:element name="planFragmentUniqueId" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="siblingIds" type="xs:string"/>
+            <xs:element minOccurs="0" name="startTimestamp" type="xs:long"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="udfs" type="tns:Udf"/>
+            <xs:element minOccurs="0" name="planFragment" type="tns:PlanFragment"/>
+            <xs:element name="action" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element minOccurs="0" name="pcRequestType" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="milestones" type="tns:PlanItemMilestone"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Section_typicalDuration" type="tns:Section_typicalDuration"/>
+    <xs:simpleType name="Section_typicalDuration">
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+    <xs:element name="DependencyTime" type="tns:DependencyTime"/>
+    <xs:complexType name="DependencyTime">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="absoluteTime" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LineRequest_characteristic" type="tns:LineRequest_characteristic"/>
+    <xs:complexType name="LineRequest_characteristic">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="LineRequest_characteristic" type="tns:OrderCharacteristic"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="SuspendOrderRequest" type="tns:SuspendOrderRequest"/>
+    <xs:complexType name="SuspendOrderRequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderID" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetOrderDetailsResponse" type="tns:GetOrderDetailsResponse"/>
+    <xs:complexType name="GetOrderDetailsResponse">
+        <xs:sequence>
+            <xs:element name="orderResult" type="tns:OrderResult"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LineRequest_slaID" type="tns:LineRequest_slaID"/>
+    <xs:complexType name="LineRequest_slaID">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="LineRequest_slaID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanFragmentModelRetry_retryDelay" type="tns:PlanFragmentModelRetry_retryDelay"/>
+    <xs:simpleType name="PlanFragmentModelRetry_retryDelay">
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+    <xs:element name="RetryOPD" type="tns:RetryOPD"/>
+    <xs:complexType name="RetryOPD">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="PerformBulkOrderActionResponse" type="tns:PerformBulkOrderActionResponse"/>
+    <xs:complexType name="PerformBulkOrderActionResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="timestamp" type="xs:dateTime"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="noOfOrders" type="xs:integer"/>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="SuspendOrderResponse_businessTransactionID" type="tns:SuspendOrderResponse_businessTransactionID"/>
+    <xs:simpleType name="SuspendOrderResponse_businessTransactionID">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PlanFragment_record_Type" type="tns:PlanFragment_record_Type"/>
+    <xs:simpleType name="PlanFragment_record_Type">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="DependencyPoint" type="tns:DependencyPoint"/>
+    <xs:complexType name="DependencyPoint">
+        <xs:sequence>
+            <xs:element name="end">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="milestoneID" type="xs:string"/>
+            <xs:element minOccurs="0" name="planID" type="xs:string"/>
+            <xs:element name="planItemID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItem_parentIds_items" type="tns:PlanItem_parentIds_items"/>
+    <xs:simpleType name="PlanItem_parentIds_items">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="Udf" type="tns:Udf"/>
+    <xs:complexType name="Udf">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="evaluationPriority" type="xs:string"/>
+            <xs:element minOccurs="0" name="flavor" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element minOccurs="0" name="originalValue" type="xs:string"/>
+            <xs:element minOccurs="0" name="type" type="xs:string"/>
+            <xs:element minOccurs="0" name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemExecuteResponse_messages_xml" type="tns:PlanItemExecuteResponse_messages_xml"/>
+    <xs:simpleType name="PlanItemExecuteResponse_messages_xml">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="GetOrderExecutionPlanResponse_orderRef" type="tns:GetOrderExecutionPlanResponse_orderRef"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_orderRef">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemExecuteResponse_orderRef" type="tns:PlanItemExecuteResponse_orderRef"/>
+    <xs:simpleType name="PlanItemExecuteResponse_orderRef">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="GetOrderExecutionPlanResponse_planID" type="tns:GetOrderExecutionPlanResponse_planID"/>
+    <xs:simpleType name="GetOrderExecutionPlanResponse_planID">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="LineRequest" type="tns:LineRequest"/>
+    <xs:complexType name="LineRequest">
+        <xs:sequence>
+            <xs:element name="action" type="xs:string"/>
+            <xs:element minOccurs="0" name="actionMode" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="characteristic" type="tns:OrderCharacteristic"/>
+            <xs:element minOccurs="0" name="customerItemID" type="xs:string"/>
+            <xs:element minOccurs="0" name="deliveryAddress" type="tns:AddressType"/>
+            <xs:element minOccurs="0" name="extension" type="tns:ExtensionType"/>
+            <xs:element minOccurs="0" name="inventoryID" type="xs:string"/>
+            <xs:element name="lineNumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="linkID" type="xs:string"/>
+            <xs:element minOccurs="0" name="notes" type="xs:string"/>
+            <xs:element name="productID" type="xs:string"/>
+            <xs:element minOccurs="0" name="productVersion" type="xs:string"/>
+            <xs:element name="quantity" type="xs:long"/>
+            <xs:element minOccurs="0" name="requiredByDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="requiredOnDate" type="xs:dateTime"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="slaID" type="xs:string"/>
+            <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="udf" type="tns:OrderUdf"/>
+            <xs:element name="uom" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Dependency" type="tns:Dependency"/>
+    <xs:complexType name="Dependency">
+        <xs:sequence>
+            <xs:element name="dependencyID" type="xs:string"/>
+            <xs:element name="external" type="tns:DependencyExternal"/>
+            <xs:element name="point" type="tns:DependencyPoint"/>
+            <xs:element name="ready" type="xs:boolean"/>
+            <xs:element name="readyTime" type="xs:dateTime"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="statusChanged" type="xs:dateTime"/>
+            <xs:element name="time" type="tns:DependencyTime"/>
+            <xs:element minOccurs="0" name="timeDelta" type="xs:long"/>
+            <xs:element minOccurs="0" name="type" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemExecuteResponse_businessTransactionId" type="tns:PlanItemExecuteResponse_businessTransactionId"/>
+    <xs:simpleType name="PlanItemExecuteResponse_businessTransactionId">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemMilestone" type="tns:PlanItemMilestone"/>
+    <xs:complexType name="PlanItemMilestone">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="dependencies" type="tns:Dependency"/>
+            <xs:element minOccurs="0" name="description" type="xs:string"/>
+            <xs:element name="milestoneID" type="xs:string"/>
+            <xs:element name="ready" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="readyTime" type="xs:dateTime"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="statusChanged" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="DependencyExternal_eventTime" type="tns:DependencyExternal_eventTime"/>
+    <xs:simpleType name="DependencyExternal_eventTime">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="PlanItem_dependentIds" type="tns:PlanItem_dependentIds"/>
+    <xs:complexType name="PlanItem_dependentIds">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItem_dependentIds" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderCharacteristic_value" type="tns:OrderCharacteristic_value"/>
+    <xs:complexType name="OrderCharacteristic_value">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="OrderCharacteristic_value" type="tns:OrderCharacteristicValues"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ActivateOrderResponse" type="tns:ActivateOrderResponse"/>
+    <xs:complexType name="ActivateOrderResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="businessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="orderID" type="xs:string"/>
+            <xs:element name="orderRef" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GenericOrderFaultOrderFaultBodyFaultDetail" type="tns:GenericOrderFaultOrderFaultBodyFaultDetail"/>
+    <xs:complexType name="GenericOrderFaultOrderFaultBodyFaultDetail">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="fault" type="tns:OMHTTPExceptionHandler"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Error" type="tns:Error"/>
+    <xs:complexType name="Error">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:element name="OMHTTPExceptionHandler" type="tns:OMHTTPExceptionHandler"/>
+    <xs:complexType name="OMHTTPExceptionHandler">
+        <xs:sequence>
+            <xs:element name="code" type="xs:int"/>
+            <xs:element minOccurs="0" name="fields" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderUdf" type="tns:OrderUdf"/>
+    <xs:complexType name="OrderUdf">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="extension" type="tns:ExtensionType"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="AuditTrail_dateCreated" type="tns:AuditTrail_dateCreated"/>
+    <xs:simpleType name="AuditTrail_dateCreated">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="PlanItem_orderLines" type="tns:PlanItem_orderLines"/>
+    <xs:complexType name="PlanItem_orderLines">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItem_orderLines" type="tns:PlanItemOrderLine"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="AmendOrderRequest" type="tns:AmendOrderRequest"/>
+    <xs:complexType name="AmendOrderRequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderRequest" type="tns:OrderRequest"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemFailedReplyArray" type="tns:PlanItemFailedReplyArray"/>
+    <xs:complexType name="PlanItemFailedReplyArray">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItemFailedReply" type="tns:PlanItemFailedReply"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="WithdrawOrderRequest" type="tns:WithdrawOrderRequest"/>
+    <xs:complexType name="WithdrawOrderRequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderID" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalBusinessTransactionID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="GetOrderExecutionPlanResponse_planItems" type="tns:GetOrderExecutionPlanResponse_planItems"/>
+    <xs:complexType name="GetOrderExecutionPlanResponse_planItems">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="GetOrderExecutionPlanResponse_planItems" type="tns:PlanItem"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PlanItemMilestone_readyTime" type="tns:PlanItemMilestone_readyTime"/>
+    <xs:simpleType name="PlanItemMilestone_readyTime">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="Dependency_timeDelta" type="tns:Dependency_timeDelta"/>
+    <xs:simpleType name="Dependency_timeDelta">
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+    <xs:element name="PlanItemFailedReply_message" type="tns:PlanItemFailedReply_message"/>
+    <xs:complexType name="PlanItemFailedReply_message">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="PlanItemFailedReply_message" type="tns:Message"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Header_statusChanged" type="tns:Header_statusChanged"/>
+    <xs:simpleType name="Header_statusChanged">
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:element name="GenericOrderFault" type="tns:GenericOrderFault"/>
+    <xs:complexType name="GenericOrderFault">
+        <xs:sequence>
+            <xs:element name="orderFault" type="tns:GenericOrderFaultOrderFault"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Header_slaID" type="tns:Header_slaID"/>
+    <xs:complexType name="Header_slaID">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Header_slaID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

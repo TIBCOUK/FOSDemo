@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:http="http://xsd.tns.tibco.com/bw/models/sharedresource/httpclient" xmlns:id="http://www.tibco.com/ws/2013/11/identity" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:oauth="http://xsd.tns.tibco.com/bw/models/sharedresource/oauth" xmlns:sca_ext="http://www.tibco.com/ns/sca/201311" xmlns:subject="http://xsd.tns.tibco.com/bw/sharedresource/trinity/models/identity/subject" xmi:id="_sIcjkT2DEe2BlMx7jIYGmw" name="tibco_om_planfragments.module.HttpClientResource1" type="http:HttpClientConfiguration">
+  <identitySet xmi:id="_FizeED2EEe2BlMx7jIYGmw" appliesTo="namedResource" name="HttpClientIdentitySet" provides="confidentiality">
+    <sca_ext:intentMap xmi:id="_FizeET2EEe2BlMx7jIYGmw" provides="sca_ext:confidentiality">
+      <sca_ext:qualifier xmi:id="_FizeEj2EEe2BlMx7jIYGmw" name="transport">
+        <id:IdentityReference xmi:id="_FizeEz2EEe2BlMx7jIYGmw" URI="" type="subject:SubjectConfiguration"/>
+      </sca_ext:qualifier>
+    </sca_ext:intentMap>
+  </identitySet>
+  <jndi:reference xmi:id="_GLfOsD2EEe2BlMx7jIYGmw" key="OauthConfigurationName" type="oauth:OauthConfiguration" value="tibco_om_planfragments.module.OAuthConfiguration"/>
+  <jndi:configuration xsi:type="http:HttpClientConfiguration" xmi:id="_sIltgD2DEe2BlMx7jIYGmw" httpClientVersion="httpcomponents" useOauth="true">
+    <tcpDetails xmi:id="_sIltgT2DEe2BlMx7jIYGmw" host="63.35.170.252" port="9093"/>
+  </jndi:configuration>
+</jndi:namedResource>

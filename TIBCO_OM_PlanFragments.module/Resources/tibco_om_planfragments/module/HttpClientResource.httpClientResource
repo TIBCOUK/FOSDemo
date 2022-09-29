@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:http="http://xsd.tns.tibco.com/bw/models/sharedresource/httpclient" xmlns:id="http://www.tibco.com/ws/2013/11/identity" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:oauth="http://xsd.tns.tibco.com/bw/models/sharedresource/oauth" xmlns:sca_ext="http://www.tibco.com/ns/sca/201311" xmlns:subject="http://xsd.tns.tibco.com/bw/sharedresource/trinity/models/identity/subject" xmi:id="_FpQbcT1wEe2UDoAOQw44Fw" name="tibco_om_planfragments.module.HttpClientResource" type="http:HttpClientConfiguration">
+  <identitySet xmi:id="_XIayQD12Ee2KTLRN-FLMJg" appliesTo="namedResource" name="HttpClientIdentitySet" provides="confidentiality">
+    <sca_ext:intentMap xmi:id="_XIayQT12Ee2KTLRN-FLMJg" provides="sca_ext:confidentiality">
+      <sca_ext:qualifier xmi:id="_XIayQj12Ee2KTLRN-FLMJg" name="transport">
+        <id:IdentityReference xmi:id="_XIkjQD12Ee2KTLRN-FLMJg" URI="tibco_om_planfragments.module.IdentityProvider" type="subject:SubjectConfiguration"/>
+      </sca_ext:qualifier>
+    </sca_ext:intentMap>
+  </identitySet>
+  <jndi:reference xmi:id="_LZKIED1xEe2av6S00MCUJw" key="OauthConfigurationName" type="oauth:OauthConfiguration" value="tibco_om_planfragments.module.OAuthConfiguration"/>
+  <jndi:configuration xsi:type="http:HttpClientConfiguration" xmi:id="_FpQbcj1wEe2UDoAOQw44Fw" httpClientVersion="httpcomponents" retryCount="3" idleConnectionTimeout="3000" hystrixCommandName="tibco_om_planfragments.module.HttpClientResource" cmdExecutionIsolationStrategy="COUNT_BASED" cmdExecutionIsolationTimeout="10" cmdExecutionIsolationInterruptOnTimeout="true" cmdExecutionIsolationSemaphoreMaxConcRequests="8" cmdCircuitBreakerRequestVolumeThreshold="50" cmdCircuitBreakerSleepWindow="100" cmdCircuitBreakerErrorThresholdPercentage="100" cmdMetricsRollingStatsTime="100" cmdMetricsRollingStatsNumBuckets="60000" cmdMetricsHealthSnapshotInterval="500" tpCoreSize="10" tpMaxQueueSize="60000" tpQueueSizeRejectionThreshold="6000" tpKeepAliveTime="1" useOauth="true">
+    <tcpDetails xmi:id="_FpQbcz1wEe2UDoAOQw44Fw">
+      <substitutionBindings xmi:id="_zJ6V0D1wEe2av6S00MCUJw" template="host" propName="OrderManagerHost"/>
+      <substitutionBindings xmi:id="_DE8PID1xEe2av6S00MCUJw" template="port" propName="OrderManagerPort"/>
+    </tcpDetails>
+  </jndi:configuration>
+</jndi:namedResource>

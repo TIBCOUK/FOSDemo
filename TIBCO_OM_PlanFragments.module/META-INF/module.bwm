@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:property="http://ns.tibco.com/bw/property" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_roS9QExnEeyycbDFley2EQ" targetNamespace="http://tns.tibco.com/bw/composite/TIBCO_OM_PlanFragments.module" name="TIBCO_OM_PlanFragments.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_iQ5HcT22Ee2e1-EdgVgKsw" name="order-submit" promote="ComponentFOSBatchOrderProcess/order-submit">
+    <sca:interface.wsdl xmi:id="_iRC4cj22Ee2e1-EdgVgKsw" interface="http://xmlns.example.com/20220926181552PLT#wsdl.interface(order-submit)" scaext:wsdlLocation="../Processes/tibco_om_stubs/module/FOSBatchOrderProcess.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_iRMpcD22Ee2e1-EdgVgKsw" name="RestService" path="/order/submit" docBasePath="http://localhost:7777/TIBCO_OM_PlanFragments.module" docResourcePath="Order-submit" basePath="/" connector="tibco_om_planfragments.module.OrderSubmitProcess" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/FOSBatchOrderAPI.json">
+      <operation xmi:id="_iRVzYD22Ee2e1-EdgVgKsw" operationName="post" nickname="postOrderSubmit" httpMethod="POST" responseStyle="element" requestStyle="element" outputPartName="item">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_iRfkYD22Ee2e1-EdgVgKsw"/>
+      <advancedConfig xmi:id="_iRMpcT22Ee2e1-EdgVgKsw" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_iRVzYT22Ee2e1-EdgVgKsw" bindingName="RestService"/>
+  </sca:service>
+  <sca:property xmi:id="_sAKqsExnEeyycbDFley2EQ" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_sAfa0ExnEeyycbDFley2EQ" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_sAqZ8ExnEeyycbDFley2EQ" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_sAv5gExnEeyycbDFley2EQ" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_sA0yAExnEeyycbDFley2EQ" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_Hb2GcEyZEeyCRdRBanf2Pw" name="JMSConnection" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_sA5qgExnEeyycbDFley2EQ" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_WSeQcD1wEe2UDoAOQw44Fw" name="OrderManagerHost" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_-Iuz0D1wEe2av6S00MCUJw" name="OrderManagerPort" type="XMLSchema:int" scaext:simpleValue="0" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_k4SN0D1xEe2av6S00MCUJw" name="OrderManagerTokenURL" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_GI-ycD1yEe2av6S00MCUJw" name="OrderManagerClientID" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_LKeWYD1yEe2av6S00MCUJw" name="OrderManagerClientSecret" type="property:password" scaext:simpleValue="#!zVgXndndoBVAEeRUbe82bA==" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_gwQzED1yEe2av6S00MCUJw" name="OrderManagementUserName" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_ls5sMD1yEe2av6S00MCUJw" name="OrderManagementPassword" type="property:password" scaext:simpleValue="#!RpiHBYH+vVTBG4Aiv35JmQ==" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_AGFs0D17Ee2BlMx7jIYGmw" name="OAuthPort" type="XMLSchema:int" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:property xmi:id="_BpyUMD17Ee2BlMx7jIYGmw" name="OAuthHost" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
+  <sca:component xmi:id="_r3_mIExnEeyycbDFley2EQ" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_r4A0QExnEeyycbDFley2EQ" processName="tibco_om_stubs.module.planItem_execute_request_listener"/>
+  </sca:component>
+  <sca:component xmi:id="_fjFdYD22Ee2e1-EdgVgKsw" name="ComponentFOSBatchOrderProcess" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_fjFdYT22Ee2e1-EdgVgKsw" processName="tibco_om_stubs.module.FOSBatchOrderProcess"/>
+    <sca:service xmi:id="_iQv9gD22Ee2e1-EdgVgKsw" name="order-submit">
+      <sca:interface.wsdl xmi:id="_iQ5HcD22Ee2e1-EdgVgKsw" interface="http://xmlns.example.com/20220926181552PLT#wsdl.interface(order-submit)" scaext:wsdlLocation="../Processes/tibco_om_stubs/module/FOSBatchOrderProcess.bwp"/>
+    </sca:service>
+  </sca:component>
+</sca:composite>

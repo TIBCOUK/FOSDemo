@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/AFF/V4.0.0/types/commontypes"
+	 targetNamespace="http://www.tibco.com/AFF/V4.0.0/types/commontypes"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:complexType name="addressType">
+		<xs:sequence>
+			<xs:element name="line1" type="xs:string"/>
+			<xs:element name="line2" type="xs:string" minOccurs="0"/>
+			<xs:element name="line3" type="xs:string" minOccurs="0"/>
+			<xs:element name="locality" type="xs:string"/>
+			<xs:element name="region" type="xs:string" minOccurs="0"/>
+			<xs:element name="country" type="xs:string"/>
+			<xs:element name="postCode" type="xs:string"/>
+			<xs:element name="supplementaryLocation" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="noteType">
+		<xs:sequence>
+			<xs:element name="user" type="xs:string" minOccurs="0"/>
+			<xs:element name="date" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="note" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="paginationRequestType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="count" type="xs:int"/>
+				<xs:sequence>
+					<xs:element name="startRecord" type="xs:int"/>
+					<xs:element name="endRecord" type="xs:int"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:element name="sort" type="sortType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="paginationReplyType">
+		<xs:sequence>
+			<xs:element name="startRecord" type="xs:int"/>
+			<xs:element name="endRecord" type="xs:int"/>
+			<xs:element name="totalRecords" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sortType">
+		<xs:sequence>
+			<xs:element name="field" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="fieldName" type="xs:string"/>
+						<xs:choice>
+							<xs:element name="ascending">
+								<xs:complexType/>
+							</xs:element>
+							<xs:element name="descending">
+								<xs:complexType/>
+							</xs:element>
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="batchType">
+		<xs:sequence>
+			<xs:element name="batchID" type="xs:string"/>
+			<xs:element name="elementCount" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="extensionType">
+		<xs:annotation>
+			<xs:documentation>
+				Generic extension element to pass small amount of custom (transparent) data within AFF messages.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

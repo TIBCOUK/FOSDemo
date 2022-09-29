@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/AFF/V4.0.0/services/orchestrator/provider"
+	 xmlns:ord="http://www.tibco.com/AFF/V4.0.0/classes/order"
+	 xmlns:rs="http://www.tibco.com/AFF/V4.0.0/classes/resultstatus"
+	 xmlns:aopd="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/aopd"
+	 xmlns:plan="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/plan"
+	 xmlns:msg="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/message"
+	 targetNamespace="http://www.tibco.com/AFF/V4.0.0/services/orchestrator/provider"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/classes/order" schemaLocation="../../../../common/sharedResources/schemas/classes/order.xsd"/>
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/classes/resultstatus" schemaLocation="../../../../common/sharedResources/schemas/classes/resultStatus.xsd"/>
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/aopd" schemaLocation="../classes/aopd.xsd"/>
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/plan" schemaLocation="../classes/plan.xsd"/>
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/message" schemaLocation="../classes/message.xsd"/>
+	<xs:attribute name="businessTransactionID" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Business correlation id. Set by client software of AFF.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:element name="FeasibilityRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element ref="ord:orderRequest"/>
+			</xs:sequence>
+			<xs:attribute ref="businessTransactionID"/>
+			<xs:attribute name="correlationID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FeasibilityReply">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="rs:resultStatus"/>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element name="orderRef" type="xs:string"/>
+				<xs:element name="completed" type="xs:boolean"/>
+				<xs:element name="passed" type="xs:boolean"/>
+				<xs:element ref="msg:message" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="businessTransactionID"/>
+			<xs:attribute name="correlationID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OPDRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element ref="ord:orderRequest"/>
+				<xs:element ref="plan:plan" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute ref="businessTransactionID"/>
+			<xs:attribute name="correlationID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OPDReply">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="rs:resultStatus"/>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element name="orderRef" type="xs:string"/>
+				<xs:element name="completed" type="xs:boolean"/>
+				<xs:element name="success" type="xs:boolean"/>
+				<xs:choice>
+					<xs:element ref="aopd:aopdRequest"/>
+					<xs:element ref="msg:message" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute ref="businessTransactionID"/>
+			<xs:attribute name="correlationID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PreQualificationFailedRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element ref="ord:orderRequest"/>
+				<xs:choice>
+					<xs:element name="feasibilityFailed">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="completed" type="xs:boolean"/>
+								<xs:element name="passed" type="xs:boolean"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="opdFailed">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="completed" type="xs:boolean"/>
+								<xs:element name="success" type="xs:boolean"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:element ref="msg:message" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="businessTransactionID"/>
+			<xs:attribute name="correlationID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PreQualificationFailedReply">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="rs:resultStatus"/>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element name="orderRef" type="xs:string"/>
+				<xs:choice>
+					<xs:element name="withdraw">
+						<xs:complexType/>
+					</xs:element>
+					<xs:element name="retryFeasibility">
+						<xs:complexType/>
+					</xs:element>
+					<xs:element name="retryOPD">
+						<xs:complexType/>
+					</xs:element>
+					<xs:element ref="ord:orderRequest"/>
+				</xs:choice>
+				<xs:element ref="msg:message" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="businessTransactionID"/>
+			<xs:attribute name="correlationID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PlanItemFailedRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element name="orderRef" type="xs:string"/>
+				<xs:element name="planID" type="xs:string"/>
+				<xs:element ref="planItem"/>
+				<xs:element name="errorHandler" type="xs:string"/>
+				<xs:element ref="msg:message" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="businessTransactionID"/>
+			<xs:attribute name="correlationID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PlanItemFailedReply">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="rs:resultStatus"/>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element name="orderRef" type="xs:string"/>
+				<xs:element name="planID" type="xs:string"/>
+				<xs:element name="planItemID" type="xs:string"/>
+				<xs:choice>
+					<xs:element name="retry">
+						<xs:complexType/>
+					</xs:element>
+					<xs:element name="resume">
+						<xs:complexType/>
+					</xs:element>
+					<xs:element name="complete">
+						<xs:complexType/>
+					</xs:element>
+					<xs:element name="error">
+						<xs:complexType/>
+					</xs:element>
+				</xs:choice>
+				<xs:element ref="msg:message" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="businessTransactionID"/>
+			<xs:attribute name="correlationID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="planItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planItemID" type="xs:string"/>
+				<xs:element name="description" type="xs:string" minOccurs="0"/>
+
+				<!--<xs:element name="processComponentType" type="xs:string" minOccurs="0"/>-->
+				<xs:element name="processComponentID" type="xs:string"/>
+				<xs:element name="processComponentName" type="xs:string" minOccurs="0"/>
+				<xs:element name="processComponentVersion" type="xs:string" minOccurs="0"/>
+				<xs:element name="processComponentType" type="xs:string" minOccurs="0"/>
+				<xs:element name="orderLine" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orderLineNumber" type="xs:string"/>
+							<xs:element name="productID" type="xs:string"/>
+							<xs:element name="productVersion" type="xs:string" minOccurs="0"/>
+							<xs:element name="action" type="xs:string"/>
+							<xs:element name="quantity" type="xs:long"/>
+							<xs:element name="uom" type="xs:string"/>
+							<xs:element name="subscriberID" type="xs:string" minOccurs="0"/>
+							<xs:element name="linkID" type="xs:string" minOccurs="0"/>
+							<xs:element name="inventoryID" type="xs:string" minOccurs="0"/>
+							<xs:element name="eol" type="xs:boolean"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="action" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

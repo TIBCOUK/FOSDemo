@@ -1,0 +1,491 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tibco.com/aff/eca/model"
+	xmlns="http://www.tibco.com/aff/eca/model"
+	elementFormDefault="qualified">
+	<xs:element name="tibeds">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="ecaRule"/>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="sequencedECARuleSet"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="sequencedRule">
+			<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="condition"  maxOccurs="unbounded" minOccurs="0"></xs:element>
+				<xs:element ref="action" maxOccurs="unbounded" minOccurs="0"/>
+				
+			</xs:sequence>
+			<xs:attribute name="sequence" type="xs:int" />
+			</xs:complexType>
+	</xs:element>
+		
+	<xs:element name="sequencedECARuleSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1" ref="event"></xs:element>
+				<xs:element ref="sequencedRule"  maxOccurs="unbounded" minOccurs="0"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="ruleSetName" type="xs:string" />
+			<xs:attribute name="externalRuleSetName" type="xs:string" />						
+			<xs:attribute default="false" name="runOnFailure">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="true"></xs:enumeration>
+						<xs:enumeration value="false"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute default="false" name="runOnError">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="true"></xs:enumeration>
+						<xs:enumeration value="false"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="ecaRule">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1" ref="event"></xs:element>
+				<xs:element ref="condition"  maxOccurs="unbounded" minOccurs="0"></xs:element>
+				<xs:element ref="action" maxOccurs="unbounded" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ruleName" type="xs:string" />
+			<xs:attribute name="externalRuleName" type="xs:string" />						
+			<xs:attribute default="false" name="runOnFailure">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="true"></xs:enumeration>
+						<xs:enumeration value="false"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute default="false" name="runOnError">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="true"></xs:enumeration>
+						<xs:enumeration value="false"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="event">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element  maxOccurs="1" minOccurs="1" ref="eventSource"/>
+				<xs:element ref="lifetime"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="eventName" type="xs:string"></xs:attribute>
+			<xs:attribute name="type" type="xs:string"></xs:attribute>
+
+
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="eventSource">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1"  ref="endpointType"/>
+				<xs:element maxOccurs="1" minOccurs="1" ref="inMessageType"/>
+
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="inMessageType">
+					<xs:complexType>			
+					<xs:sequence>
+					<xs:choice maxOccurs="1" minOccurs="0">
+						<xs:element maxOccurs="1" minOccurs="0"  ref="plainStringInMessage"/>
+						<xs:element maxOccurs="1" minOccurs="0"  ref="jsonMessage"/>
+						<xs:element maxOccurs="1" minOccurs="0"  ref="javabean"/>
+						<xs:element maxOccurs="1" minOccurs="0"  ref="xmlInMessage"/>
+					</xs:choice>
+					</xs:sequence>
+					</xs:complexType>
+	</xs:element>
+	<xs:element name="plainStringInMessage" >
+		<xs:complexType>
+			<xs:attribute name="messageStartDelimiter" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="messageEndDelimiter" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="parameterDelimiter" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="parameterValueDelimiter" type="xs:string" use="optional"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="jsonMessage" type="xs:string"/>
+	<xs:element name="javabean">
+			<xs:complexType>
+			<xs:attribute name="packageName" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="className" type="xs:string" use="optional"></xs:attribute>
+		</xs:complexType>	
+	</xs:element>
+	<xs:element name="xmlInMessage">
+		<xs:complexType>
+			<xs:attribute name="schemaLocation" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="namespace" type="xs:string" use="optional"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lifetimeDataRange">
+		<xs:complexType>
+			<xs:attribute name="startTime" type="xs:dateTime"></xs:attribute>
+			<xs:attribute name="endTime" type="xs:dateTime"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="lifetimeStartFrom">
+		<xs:complexType>
+			<xs:attribute name="start-time" type="xs:dateTime"></xs:attribute>
+
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="lifetimeNTimes">
+		<xs:complexType>
+			<xs:attribute name="count" type="xs:int"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="lifetimeOnce">
+	</xs:element>
+
+	<xs:element name="lifetime">
+
+		<xs:complexType>
+			<xs:choice maxOccurs="1" minOccurs="0">
+				<xs:element ref="lifetimeDataRange"></xs:element>
+				<xs:element ref="lifetimeStartFrom"></xs:element>
+				<xs:element ref="lifetimeOnce"></xs:element>
+				<xs:element ref="lifetimeNTimes"></xs:element>
+			</xs:choice>
+		</xs:complexType>
+
+	</xs:element>
+	<xs:element name="condition">
+		<xs:complexType>
+			<xs:choice maxOccurs="1" minOccurs="0">
+				<xs:element ref="conditionBean"></xs:element>
+				<xs:element ref="conditionField"></xs:element>
+				<xs:element ref="conditionService"></xs:element>
+				<xs:element ref="conditionScript"></xs:element>
+				<xs:element ref="conditionExpression"></xs:element>
+			</xs:choice>
+			<xs:attribute name="name" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="description" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="conditionType" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="bean"></xs:enumeration>
+						<xs:enumeration value="Field"></xs:enumeration>
+						<xs:enumeration value="script"></xs:enumeration>
+						<xs:enumeration value="service"></xs:enumeration>
+						<xs:enumeration value="expression"></xs:enumeration>
+
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="conditionField">
+		<xs:complexType>
+			<xs:attribute name="mapName" type="xs:string"></xs:attribute>
+			<xs:attribute name="fieldName" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="operator" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="less"></xs:enumeration>
+						<xs:enumeration value="greater"></xs:enumeration>
+						<xs:enumeration value="less-equals"></xs:enumeration>
+						<xs:enumeration value="greater-equals"></xs:enumeration>
+						<xs:enumeration value="equals"></xs:enumeration>
+						<xs:enumeration value="not-equals"></xs:enumeration>
+						<xs:enumeration value="contains"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute type="xs:string" name="value"/>
+			<xs:attribute name="toMapName" type="xs:string"></xs:attribute>
+			<xs:attribute name="toFieldName" type="xs:string"></xs:attribute>
+			<xs:attribute default="String" name="type">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="PlainString"></xs:enumeration>
+						<xs:enumeration value="String"></xs:enumeration>
+						<xs:enumeration value="BigDecimal"></xs:enumeration>
+						<xs:enumeration value="Double"></xs:enumeration>
+						<xs:enumeration value="Float"></xs:enumeration>
+						<xs:enumeration value="Long"></xs:enumeration>
+						<xs:enumeration value="Integer"></xs:enumeration>
+						<xs:enumeration value="Date"></xs:enumeration>
+						<xs:enumeration value="Time"></xs:enumeration>
+						<xs:enumeration value="Timestamp"></xs:enumeration>
+						<xs:enumeration value="Boolean"></xs:enumeration>
+						<xs:enumeration value="Object"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="format" type="xs:string"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="conditionBean">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="parameter"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="beanId" type="xs:string"></xs:attribute>
+			<xs:attribute name="methodName" type="xs:string"></xs:attribute>
+			<xs:attribute name="interface" type="xs:string"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="conditionService">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="parameter"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="serviceName" type="xs:string"></xs:attribute>
+			<xs:attribute name="wsdlLocation" type="xs:string"></xs:attribute>
+			<xs:attribute name="methodName" type="xs:string"></xs:attribute>			
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="conditionExpression">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="expression" type="xs:string"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string"></xs:attribute>
+			<xs:attribute name="lang" >
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="groovy"></xs:enumeration>
+						<xs:enumeration value="JavaScript"></xs:enumeration>
+						<xs:enumeration value="JRuby"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			
+			
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="conditionScript">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="lang" >
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="groovy"></xs:enumeration>
+						<xs:enumeration value="beanshell"></xs:enumeration>
+						<xs:enumeration value="jruby"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="location" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="actionNotification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="1" minOccurs="1"  ref="endpointType"/>
+				<xs:element maxOccurs="1" minOccurs="1"  ref="outMessageType"/>
+				<xs:element ref="dampeningCriteria" minOccurs="0" maxOccurs="1">
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element name="endpointType">
+		<xs:complexType>
+				<xs:sequence>
+			<xs:element name="uri" type="xs:string"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="parameter"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="protocol"  use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="JMS"></xs:enumeration>
+						<xs:enumeration value="SMTP"></xs:enumeration>
+						<xs:enumeration value="Tibbr"></xs:enumeration>						
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="dampeningCriteria">
+		<xs:complexType>
+			<xs:attribute name="trueCount" type="xs:int" use="optional"/>
+			<xs:attribute name="evaluationCount" type="xs:int" use="optional"/>
+			<xs:attribute name="notificationCount" type="xs:int" default="0" use="optional"/>
+			<xs:attribute name="timeValue" type="xs:long" use="optional" />
+			<xs:attribute name="unit" default="MINUTE" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="SECOND"></xs:enumeration>
+						<xs:enumeration value="MINUTE"></xs:enumeration>
+						<xs:enumeration value="HOUR"></xs:enumeration>
+						<xs:enumeration value="DAY"></xs:enumeration>
+						<xs:enumeration value="WEEK"></xs:enumeration>
+						<xs:enumeration value="MONTH"></xs:enumeration>
+						<xs:enumeration value="HOUR"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="actionScript">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="lang" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="location" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+
+	</xs:element>
+
+	
+	<xs:element name="outMessageType">
+					<xs:complexType>			
+					<xs:sequence>
+					<xs:choice maxOccurs="1" minOccurs="1">
+						<xs:element maxOccurs="1" minOccurs="0"  ref="plainStringOutMessage"/>
+						<xs:element maxOccurs="1" minOccurs="0"  ref="jsonMessage"/>
+						<xs:element maxOccurs="1" minOccurs="0"  ref="javabean"/>
+						<xs:element maxOccurs="1" minOccurs="0"  ref="xmlOutMessage"/>
+					</xs:choice>
+					</xs:sequence>
+					<xs:attribute name="type"  use="optional">
+						<xs:simpleType>
+							<xs:restriction base="xs:token">
+								<xs:enumeration value="plainStringOutMessage"></xs:enumeration>
+								<xs:enumeration value="jsonMessage"></xs:enumeration>
+								<xs:enumeration value="javabean"></xs:enumeration>
+								<xs:enumeration value="xmlOutMessage"></xs:enumeration>						
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="xmlOutMessage">
+	<xs:complexType>
+		<xs:attribute name="xslt" type="xs:string" use="optional"></xs:attribute>	
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="plainStringOutMessage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="messageTemplate" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="actionService">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="dampeningCriteria" minOccurs="0" maxOccurs="1"/>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="parameter"/>
+				<xs:element name="payloadTemplate" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="serviceName" type="xs:string"></xs:attribute>
+			<xs:attribute name="wsdlLocation" type="xs:string"></xs:attribute>
+			<xs:attribute name="methodName" type="xs:string"></xs:attribute>			
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element name="actionBean">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="parameter"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="beanId" type="xs:string"></xs:attribute>
+			<xs:attribute name="methodName" type="xs:string"></xs:attribute>
+			<xs:attribute name="interface" type="xs:string"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="action">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="1" minOccurs="0">
+					<xs:element ref="actionNotification"></xs:element>
+					<xs:element ref="actionScript"></xs:element>
+					<xs:element ref="actionService"></xs:element>
+					<xs:element ref="actionBean"></xs:element>
+					
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="description" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="actionType" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="notification"></xs:enumeration>
+					    <xs:enumeration value="bean"></xs:enumeration>
+						<xs:enumeration value="script"></xs:enumeration>
+						<xs:enumeration value="service"></xs:enumeration>
+						
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute default="true" name="ignoreFailure">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="true"></xs:enumeration>
+						<xs:enumeration value="false"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute default="true" name="ignoreError">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="true"></xs:enumeration>
+						<xs:enumeration value="false"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element name="parameter">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string"></xs:attribute>
+			<xs:attribute name="value" type="xs:string"></xs:attribute>
+			<xs:attribute default="String" name="type">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="PlainString"></xs:enumeration>
+						<xs:enumeration value="String"></xs:enumeration>
+						<xs:enumeration value="BigDecimal"></xs:enumeration>
+						<xs:enumeration value="Double"></xs:enumeration>
+						<xs:enumeration value="Float"></xs:enumeration>
+						<xs:enumeration value="Long"></xs:enumeration>
+						<xs:enumeration value="Integer"></xs:enumeration>
+						<xs:enumeration value="Date"></xs:enumeration>
+						<xs:enumeration value="Time"></xs:enumeration>
+						<xs:enumeration value="Timestamp"></xs:enumeration>
+						<xs:enumeration value="Boolean"></xs:enumeration>
+						<xs:enumeration value="Object"></xs:enumeration>
+						<xs:enumeration value="Password"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

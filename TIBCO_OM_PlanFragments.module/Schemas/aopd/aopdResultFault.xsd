@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema targetNamespace="http://www.tibco.com/aff/aopdservice/result"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/aff/aopdservice/result">
+	<xs:element name="resultFault">
+		<xs:complexType>
+			<xs:choice>
+					<xs:element name="message" type="xs:string" />
+					<xs:element ref="customErrors" />
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="customErrors">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="customError"  minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="customError">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderLine" type="xs:string" />
+				<xs:element name="productId" type="xs:string" />
+				<xs:element name="message" type="xs:string" />
+				<xs:element name="planGenerationPhase" type="xs:string"/>
+				<xs:element name="ruleId" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

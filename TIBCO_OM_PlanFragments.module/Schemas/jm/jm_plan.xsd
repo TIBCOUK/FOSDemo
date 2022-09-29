@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/aff/applications/jm/plan"
+	 xmlns:tp="http://www.tibco.com/aff/applications/jm/timepoints"
+	 targetNamespace="http://www.tibco.com/aff/applications/jm/plan"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.tibco.com/aff/applications/jm/timepoints" schemaLocation="jm_timepoints.xsd"/>
+	<xs:element name="plan">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planID" type="xs:string"/>
+				<xs:element name="orderID" type="xs:string"/>
+				<xs:element name="orderRef" type="xs:string"/>
+				<xs:element name="status" type="xs:string"/>
+				<xs:element name="riskRegion" type="xs:string"/>
+				<xs:element ref="tp:start"/>
+				<xs:element ref="tp:typicalEnd"/>
+				<xs:element ref="tp:maximumEnd"/>
+				<xs:choice>
+					<xs:element ref="tp:predictedEnd"/>
+					<xs:element ref="tp:actualEnd"/>
+				</xs:choice>
+				<xs:element ref="planItem" maxOccurs="unbounded"/>
+				<xs:element ref="path" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="planItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planItemID" type="xs:string"/>
+				<xs:element name="status" type="xs:string"/>
+				<xs:element name="processComponentID" type="xs:string"/>
+				<xs:element name="action" type="xs:string"/>
+				<xs:element name="milestone" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="milestoneID" type="xs:string"/>
+							<xs:element ref="tp:typicalRelease"/>
+							<xs:element ref="tp:maximumRelease"/>
+							<xs:choice>
+								<xs:element ref="tp:actualRelease"/>
+								<xs:element ref="tp:predictedRelease"/>
+							</xs:choice>
+							<xs:element name="dependency" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="point">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="planID" type="xs:string"/>
+													<xs:element name="planItemID" type="xs:string"/>
+													<xs:element name="milestoneID" type="xs:string"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="time">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="timeDelta" type="xs:long"/>
+													<xs:element ref="tp:release"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="section" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="startMilestoneID" type="xs:string"/>
+							<xs:element name="endMilestoneID" type="xs:string"/>
+							<xs:element name="riskRegion" type="xs:string"/>
+							<xs:element name="typicalDuration" type="xs:long"/>
+							<xs:element name="maximumDuration" type="xs:long"/>
+							<xs:element name="actualDuration" type="xs:long" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="path">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planItemSection" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="planItemID" type="xs:string"/>
+							<xs:element name="startMilestoneID" type="xs:string"/>
+							<xs:element name="endMilestoneID" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="typicalDuration" type="xs:long"/>
+				<xs:element name="maximumDuration" type="xs:long"/>
+				<xs:element name="actualDuration" type="xs:long" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

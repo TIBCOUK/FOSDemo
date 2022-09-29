@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/AFF/V4.0.0/classes/planFragment"
+	 targetNamespace="http://www.tibco.com/AFF/V4.0.0/classes/planFragment"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="PlanFragmentModels">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="planFragment" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="planFragment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planFragmentID" type="xs:string"/>
+				<xs:element name="planFragmentName" type="xs:string"/>
+				<xs:element name="planFragmentVersion" type="xs:string" minOccurs="0"/>
+				<xs:element name="owner" type="xs:string" minOccurs="0"/>
+				<xs:element name="record_Type" type="xs:string" minOccurs="0" />
+				<xs:element name="errorHandler" type="xs:string"/>
+				<xs:element name="retry" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="retryOverride" type="xs:boolean"/>
+							<xs:element name="retryFailed" type="xs:boolean"/>
+							<xs:element name="retryCount" type="xs:int"/>
+							<xs:element name="retryDelay" type="xs:long"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="section" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="section">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="startMilestoneID" type="xs:string"/>
+				<xs:element name="endMilestoneID" type="xs:string"/>
+				<xs:element name="typicalDuration" type="xs:long"/>
+				<xs:element name="maximumDuration" type="xs:long"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

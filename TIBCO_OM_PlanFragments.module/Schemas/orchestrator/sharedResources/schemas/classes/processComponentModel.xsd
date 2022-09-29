@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/AFF/V4.0.0/classes/orchestrator/processComponentModel"
+	 targetNamespace="http://www.tibco.com/AFF/V4.0.0/classes/orchestrator/processComponentModel"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="processComponentModel">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="processComponentID" type="xs:string"/>
+				<xs:element name="processComponentName" type="xs:string"/>
+				<xs:element name="processComponentVersion" type="xs:string" minOccurs="0"/>
+				<xs:element name="processComponentType" type="xs:string" minOccurs="0"/>
+				<xs:element name="processComponentRecordType" type="xs:string" minOccurs="0"/>
+				<xs:element name="errorHandler" type="xs:string"/>
+				<xs:element name="retry" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="retryFailed" type="xs:boolean"/>
+							<xs:element name="retryCount" type="xs:int"/>
+							<xs:element name="retryDelay" type="xs:long"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="section" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="section">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="startMilestoneID" type="xs:string"/>
+				<xs:element name="endMilestoneID" type="xs:string"/>
+				<xs:element name="typicalDuration" type="xs:long"/>
+				<xs:element name="maximumDuration" type="xs:long"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

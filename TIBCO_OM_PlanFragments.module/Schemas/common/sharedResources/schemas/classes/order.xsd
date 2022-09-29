@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/AFF/V4.0.0/classes/order"
+	 xmlns:types="http://www.tibco.com/AFF/V4.0.0/types/commontypes"
+	 targetNamespace="http://www.tibco.com/AFF/V4.0.0/classes/order"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/types/commontypes" schemaLocation="../types/commonTypes.xsd"/>
+	<xs:complexType name="orderType">
+		<xs:sequence>
+			<xs:element name="orderID" type="xs:string"/>
+			<xs:element name="orderRef">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="header" type="headerType"/>
+			<xs:element name="line" type="lineType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="request" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="orderRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="amendments" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="orderAmendment" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orderRequestType">
+		<xs:sequence>
+			<xs:element name="orderRef">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="header" type="headerRequestType"/>
+			<xs:element name="line" type="lineRequestType" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="headerType">
+		<xs:sequence>
+			<xs:element name="submittedDate" type="xs:dateTime"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+			<xs:element name="customerID" type="xs:string" minOccurs="0"/>
+			<xs:element name="subscriberID" type="xs:string" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element name="requiredByDate" type="xs:dateTime"/>
+				<xs:element name="requiredOnDate" type="xs:dateTime"/>
+			</xs:choice>
+			<xs:element name="invoiceAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="deliveryAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="notes" type="xs:string" minOccurs="0"/>
+			<xs:element name="slaID" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="pointOfNoReturn" type="xs:boolean"/>
+			<xs:element name="status" type="xs:string"/>
+			<xs:element name="statusChanged" type="xs:dateTime"/>
+			<xs:element name="suspended" type="xs:boolean"/>
+			<xs:element name="originator" type="xs:string"/>
+			<xs:element name="planUniqueID" type="xs:string" minOccurs="0"/>
+			<xs:element name="planStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="planExpectedCompletionDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="warning" type="xs:string" minOccurs="0"/>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="headerRequestType">
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+			<xs:element name="customerID" type="xs:string" minOccurs="0"/>
+			<xs:element name="subscriberID" type="xs:string" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element name="requiredByDate" type="xs:dateTime"/>
+				<xs:element name="requiredOnDate" type="xs:dateTime"/>
+			</xs:choice>
+			<xs:element name="invoiceAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="deliveryAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="notes" type="xs:string" minOccurs="0"/>
+			<xs:element name="slaID" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lineType">
+		<xs:sequence>
+			<xs:element name="lineNumber">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="subscriberID" type="xs:string" minOccurs="0"/>
+			<xs:element name="productID" type="xs:string"/>
+			<xs:element name="productVersion" type="xs:string" minOccurs="0"/>
+			<xs:element name="quantity" type="xs:long"/>
+			<xs:element name="uom" type="xs:string"/>
+			<xs:element name="deliveryAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="action" type="xs:string"/>
+			<xs:element name="actionMode" type="xs:string" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element name="requiredByDate" type="xs:dateTime"/>
+				<xs:element name="requiredOnDate" type="xs:dateTime"/>
+			</xs:choice>
+			<xs:element name="linkID" type="xs:string" minOccurs="0"/>
+			<xs:element name="inventoryID" type="xs:string" minOccurs="0"/>
+			<xs:element name="notes" type="xs:string" minOccurs="0"/>
+			<xs:element name="slaID" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="characteristic" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="customerItemID" type="xs:string" minOccurs="0"/>
+			<xs:element name="status" type="xs:string"/>
+			<xs:element name="statusChanged" type="xs:dateTime"/>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lineRequestType">
+		<xs:sequence>
+			<xs:element name="lineNumber">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="subscriberID" type="xs:string" minOccurs="0"/>
+			<xs:element name="productID" type="xs:string"/>
+			<xs:element name="productVersion" type="xs:string" minOccurs="0"/>
+			<xs:element name="quantity" type="xs:long"/>
+			<xs:element name="uom" type="xs:string"/>
+			<xs:element name="deliveryAddress" type="types:addressType" minOccurs="0"/>
+			<xs:element name="action" type="xs:string"/>
+			<xs:element name="actionMode" type="xs:string" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element name="requiredByDate" type="xs:dateTime"/>
+				<xs:element name="requiredOnDate" type="xs:dateTime"/>
+			</xs:choice>
+			<xs:element name="linkID" type="xs:string" minOccurs="0"/>
+			<xs:element name="inventoryID" type="xs:string" minOccurs="0"/>
+			<xs:element name="notes" type="xs:string" minOccurs="0"/>
+			<xs:element name="slaID" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="characteristic" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="customerItemID" type="xs:string" minOccurs="0"/>
+			<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="udf">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"/>
+				<xs:element name="value" type="xs:string"/>
+				<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="characteristic">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"/>
+				<xs:element name="description" type="xs:string"/>
+				<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name" type="xs:string"/>
+							<xs:element name="type" type="xs:string"/>
+							<xs:element name="value" type="xs:string" minOccurs="0"/>
+							<xs:element name="valueFrom" type="xs:string" minOccurs="0"/>
+							<xs:element name="valueTo" type="xs:string" minOccurs="0"/>
+							<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="orderRequest" type="orderRequestType"/>
+	<xs:element name="orderAmendment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="orderRequest"/>
+				<xs:element name="extension" type="types:extensionType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="order" type="orderType"/>
+</xs:schema>

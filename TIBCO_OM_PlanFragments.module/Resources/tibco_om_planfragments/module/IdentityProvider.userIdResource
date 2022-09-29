@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:sp="http://xsd.tns.tibco.com/bw/sharedresource/trinity/models/securityprovider" xmlns:subject="http://xsd.tns.tibco.com/bw/sharedresource/trinity/models/identity/subject" xmi:id="_XEsv4T12Ee2KTLRN-FLMJg" name="tibco_om_planfragments.module.IdentityProvider" type="subject:SubjectConfiguration">
+  <jndi:configuration xsi:type="sp:IdentitySecurityProvider" xmi:id="_XEsv4j12Ee2KTLRN-FLMJg">
+    <configuration xsi:type="subject:SubjectConfiguration" xmi:id="_XEsv4z12Ee2KTLRN-FLMJg">
+      <substitutionBindings xmi:id="_Yt9MsD12Ee2KTLRN-FLMJg" template="username" propName="OrderManagerClientID"/>
+      <substitutionBindings xmi:id="_aErIAD12Ee2KTLRN-FLMJg" template="userpassword" propName="OrderManagerClientSecret"/>
+    </configuration>
+  </jndi:configuration>
+</jndi:namedResource>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:oauth="http://xsd.tns.tibco.com/bw/models/sharedresource/oauth" xmi:id="_L9ngAT1xEe2av6S00MCUJw" name="tibco_om_planfragments.module.OAuthConfiguration" type="oauth:OauthConfiguration">
+  <jndi:configuration xsi:type="oauth:OauthConfiguration" xmi:id="_L9ngAj1xEe2av6S00MCUJw" grantType="Resource Password" clientID="Property " scope="read+write">
+    <substitutionBindings xmi:id="_jZoegD1xEe2av6S00MCUJw" template="accessTokenURL" propName="OrderManagerTokenURL"/>
+    <substitutionBindings xmi:id="_FrV0MD1yEe2av6S00MCUJw" template="clientID" propName="OrderManagerClientID"/>
+    <substitutionBindings xmi:id="_dzYyQD1yEe2av6S00MCUJw" template="clientSecret" propName="OrderManagerClientSecret"/>
+    <substitutionBindings xmi:id="_gapIYD1yEe2av6S00MCUJw" template="username" propName="OrderManagementUserName"/>
+    <substitutionBindings xmi:id="_vEBzoD1yEe2av6S00MCUJw" template="password" propName="OrderManagementPassword"/>
+  </jndi:configuration>
+</jndi:namedResource>

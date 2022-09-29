@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ xmlns="http://www.tibco.com/AFF/V4.0.0/classes/resultstatus"
+	 targetNamespace="http://www.tibco.com/AFF/V4.0.0/classes/resultstatus"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="resultStatus">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="deployment" type="xs:string"/>
+				<xs:element name="service" type="xs:string"/>
+				<xs:element name="operation" type="xs:string"/>
+				<xs:element name="component" type="xs:string" minOccurs="0"/>
+				<xs:element name="severity">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="E"/>
+							<xs:enumeration value="F"/>
+							<xs:enumeration value="I"/>
+							<xs:enumeration value="S"/>
+							<xs:enumeration value="W"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="code" type="xs:string"/>
+				<xs:element name="message" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="/T1664212569773Converted/JsonSchema" xmlns:tns="/T1664212569773Converted/JsonSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="OrderSubmitSchema_orders" type="tns:OrderSubmitSchema_orders"/>
+    <xs:complexType name="OrderSubmitSchema_orders">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="OrderSubmitSchema_orders">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="externalBusinessTransactionId" type="xs:string"/>
+                        <xs:element minOccurs="0" name="orderRequest">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element minOccurs="0" name="header">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element minOccurs="0" name="customerID" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="deliveryAddress">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element minOccurs="0" name="country" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line1" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line2" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line3" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="locality" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="postCode" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="region" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="supplementaryLocation" type="xs:string"/>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element minOccurs="0" name="description" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="orderPriority" type="xs:integer"/>
+                                                <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+                                                <xs:element maxOccurs="unbounded" minOccurs="0" name="udf">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element minOccurs="0" name="name" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="value" type="xs:string"/>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element minOccurs="0" name="requiredByDate" type="xs:dateTime"/>
+                                                <xs:element minOccurs="0" name="requiredOnDate" type="xs:dateTime"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element maxOccurs="unbounded" minOccurs="0" name="line">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element minOccurs="0" name="action" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="deliveryAddress">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element minOccurs="0" name="country" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line1" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line2" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line3" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="locality" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="postCode" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="region" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="supplementaryLocation" type="xs:string"/>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element minOccurs="0" name="lineNumber" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="productID" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="productVersion" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="quantity" type="xs:integer"/>
+                                                <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="requiredByDate" type="xs:dateTime"/>
+                                                <xs:element minOccurs="0" name="requiredOnDate" type="xs:dateTime"/>
+                                                <xs:element maxOccurs="unbounded" minOccurs="0" name="udf">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element minOccurs="0" name="name" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="value" type="xs:string"/>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element minOccurs="0" name="uom" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+                                    <xs:element minOccurs="0" name="orderID" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderSubmitSchema_orders_items" type="tns:OrderSubmitSchema_orders_items"/>
+    <xs:complexType name="OrderSubmitSchema_orders_items">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="externalBusinessTransactionId" type="xs:string"/>
+            <xs:element minOccurs="0" name="orderRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="header">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element minOccurs="0" name="customerID" type="xs:string"/>
+                                    <xs:element minOccurs="0" name="deliveryAddress">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element minOccurs="0" name="country" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="line1" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="line2" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="line3" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="locality" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="postCode" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="region" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="supplementaryLocation" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" name="description" type="xs:string"/>
+                                    <xs:element minOccurs="0" name="orderPriority" type="xs:integer"/>
+                                    <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+                                    <xs:element maxOccurs="unbounded" minOccurs="0" name="udf">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element minOccurs="0" name="name" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="value" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" name="requiredByDate" type="xs:dateTime"/>
+                                    <xs:element minOccurs="0" name="requiredOnDate" type="xs:dateTime"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="line">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element minOccurs="0" name="action" type="xs:string"/>
+                                    <xs:element minOccurs="0" name="deliveryAddress">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element minOccurs="0" name="country" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="line1" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="line2" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="line3" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="locality" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="postCode" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="region" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="supplementaryLocation" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" name="lineNumber" type="xs:string"/>
+                                    <xs:element minOccurs="0" name="productID" type="xs:string"/>
+                                    <xs:element minOccurs="0" name="productVersion" type="xs:string"/>
+                                    <xs:element minOccurs="0" name="quantity" type="xs:integer"/>
+                                    <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+                                    <xs:element minOccurs="0" name="requiredByDate" type="xs:dateTime"/>
+                                    <xs:element minOccurs="0" name="requiredOnDate" type="xs:dateTime"/>
+                                    <xs:element maxOccurs="unbounded" minOccurs="0" name="udf">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element minOccurs="0" name="name" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="value" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" name="uom" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+                        <xs:element minOccurs="0" name="orderID" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="OrderSubmitSchema" type="tns:OrderSubmitSchema"/>
+    <xs:complexType name="OrderSubmitSchema">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="orders">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="externalBusinessTransactionId" type="xs:string"/>
+                        <xs:element minOccurs="0" name="orderRequest">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element minOccurs="0" name="header">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element minOccurs="0" name="customerID" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="deliveryAddress">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element minOccurs="0" name="country" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line1" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line2" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line3" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="locality" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="postCode" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="region" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="supplementaryLocation" type="xs:string"/>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element minOccurs="0" name="description" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="orderPriority" type="xs:integer"/>
+                                                <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+                                                <xs:element maxOccurs="unbounded" minOccurs="0" name="udf">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element minOccurs="0" name="name" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="value" type="xs:string"/>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element minOccurs="0" name="requiredByDate" type="xs:dateTime"/>
+                                                <xs:element minOccurs="0" name="requiredOnDate" type="xs:dateTime"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element maxOccurs="unbounded" minOccurs="0" name="line">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element minOccurs="0" name="action" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="deliveryAddress">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element minOccurs="0" name="country" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line1" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line2" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="line3" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="locality" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="postCode" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="region" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="supplementaryLocation" type="xs:string"/>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element minOccurs="0" name="lineNumber" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="productID" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="productVersion" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="quantity" type="xs:integer"/>
+                                                <xs:element minOccurs="0" name="subscriberID" type="xs:string"/>
+                                                <xs:element minOccurs="0" name="requiredByDate" type="xs:dateTime"/>
+                                                <xs:element minOccurs="0" name="requiredOnDate" type="xs:dateTime"/>
+                                                <xs:element maxOccurs="unbounded" minOccurs="0" name="udf">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element minOccurs="0" name="name" type="xs:string"/>
+                                                            <xs:element minOccurs="0" name="value" type="xs:string"/>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element minOccurs="0" name="uom" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element minOccurs="0" name="orderRef" type="xs:string"/>
+                                    <xs:element minOccurs="0" name="orderID" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

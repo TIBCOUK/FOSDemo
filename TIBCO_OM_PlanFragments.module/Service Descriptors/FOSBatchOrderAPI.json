@@ -1,0 +1,251 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "FOSBatchOrderAPI",
+    "x-lastModified": "26 September 2022 5:01:49 pm (British Summer Time)"
+  },
+  "paths": {
+    "/order/submit": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response"
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Collection of Orders",
+            "schema": {
+              "$ref": "#/definitions/OrderSubmitSchema"
+            }
+          }
+        ],
+        "operationId": "postOrderSubmit",
+        "consumes": [
+          "application/json"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "OrderSubmitSchema": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "externalBusinessTransactionId": {
+                "type": "string",
+                "default": "iain"
+              },
+              "orderRequest": {
+                "type": "object",
+                "properties": {
+                  "header": {
+                    "type": "object",
+                    "properties": {
+                      "customerID": {
+                        "type": "string",
+                        "default": "123"
+                      },
+                      "deliveryAddress": {
+                        "type": "object",
+                        "properties": {
+                          "country": {
+                            "type": "string",
+                            "default": "1"
+                          },
+                          "line1": {
+                            "type": "string",
+                            "default": "34"
+                          },
+                          "line2": {
+                            "type": "string",
+                            "default": "eff"
+                          },
+                          "line3": {
+                            "type": "string",
+                            "default": "wefwe"
+                          },
+                          "locality": {
+                            "type": "string",
+                            "default": "effe"
+                          },
+                          "postCode": {
+                            "type": "string",
+                            "default": "34"
+                          },
+                          "region": {
+                            "type": "string",
+                            "default": "gh"
+                          },
+                          "supplementaryLocation": {
+                            "type": "string",
+                            "default": "fewf"
+                          }
+                        }
+                      },
+                      "description": {
+                        "type": "string",
+                        "default": "desc"
+                      },
+                      "orderPriority": {
+                        "type": "integer",
+                        "default": 0
+                      },
+                      "subscriberID": {
+                        "type": "string",
+                        "default": "123"
+                      },
+                      "udf": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "default": "OrderUDF"
+                            },
+                            "value": {
+                              "type": "string",
+                              "default": "123"
+                            }
+                          }
+                        }
+                      },
+                      "requiredByDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "default": "2019-01-17T09:09:22.438Z"
+                      },
+                      "requiredOnDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "default": "2019-01-17T09:09:22.438Z"
+                      }
+                    }
+                  },
+                  "line": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "type": "string",
+                          "default": "PROVIDE"
+                        },
+                        "deliveryAddress": {
+                          "type": "object",
+                          "properties": {
+                            "country": {
+                              "type": "string",
+                              "default": "1"
+                            },
+                            "line1": {
+                              "type": "string",
+                              "default": "34"
+                            },
+                            "line2": {
+                              "type": "string",
+                              "default": "eff"
+                            },
+                            "line3": {
+                              "type": "string",
+                              "default": "wefwe"
+                            },
+                            "locality": {
+                              "type": "string",
+                              "default": "effe"
+                            },
+                            "postCode": {
+                              "type": "string",
+                              "default": "34"
+                            },
+                            "region": {
+                              "type": "string",
+                              "default": "gh"
+                            },
+                            "supplementaryLocation": {
+                              "type": "string",
+                              "default": "fewf"
+                            }
+                          }
+                        },
+                        "lineNumber": {
+                          "type": "string",
+                          "default": "1"
+                        },
+                        "productID": {
+                          "type": "string",
+                          "default": "PO_01"
+                        },
+                        "productVersion": {
+                          "type": "string",
+                          "default": "1"
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "default": 1
+                        },
+                        "subscriberID": {
+                          "type": "string",
+                          "default": "123"
+                        },
+                        "requiredByDate": {
+                          "type": "string",
+                          "format": "date-time",
+                          "default": "2019-01-17T09:09:22.438Z"
+                        },
+                        "requiredOnDate": {
+                          "type": "string",
+                          "format": "date-time",
+                          "default": "2019-01-17T09:09:22.438Z"
+                        },
+                        "udf": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "default": "simulate"
+                              },
+                              "value": {
+                                "type": "string",
+                                "default": "0"
+                              }
+                            }
+                          }
+                        },
+                        "uom": {
+                          "type": "string",
+                          "default": "uom"
+                        }
+                      }
+                    }
+                  },
+                  "orderRef": {
+                    "type": "string",
+                    "default": "990062"
+                  },
+                  "orderID": {
+                    "type": "string",
+                    "default": "990062"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

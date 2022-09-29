@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/notification"
+	 xmlns:aopd="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/aopd"
+	 xmlns:msg="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/message"
+	 xmlns:ord="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/order"
+	 xmlns:plan="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/plan"
+	 targetNamespace="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/notification"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/aopd" schemaLocation="aopd.xsd"/>
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/message" schemaLocation="message.xsd"/>
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/order" schemaLocation="order.xsd"/>
+	<xs:import namespace="http://www.tibco.com/AFF/V4.0.0/applications/orchestrator/plan" schemaLocation="plan.xsd"/>
+	<xs:element name="orderNotification">
+		<xs:annotation>
+			<xs:documentation>Notification for a change in order status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order identifier for the changed order.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order reference identifier for the changed order.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="customerID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Customer ID for the changed order.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subscriberID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Subscriber ID for the changed order.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="status" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Current status of the order.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="previousStatus" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Previous status of the order.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimestamp" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Timestamp as a date/time when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimeMillis" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>Timestamp in msec when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="messageCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message code for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="message" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ord:order" minOccurs="0"/>
+				<xs:element ref="plan:plan" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="businessTransactionID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="orderLineNotification">
+		<xs:annotation>
+			<xs:documentation>Notification for a change in order line status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order identifier for the changed order line.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order reference identifier for the changed order line.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="lineNumber" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order line number for the changed order line.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="customerID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Customer ID for the changed order to which the order line belongs.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subscriberID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Subscriber ID for the changed order to which the order line belongs.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="status" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Current status of the order line.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="previousStatus" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Previous status of the order line.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimestamp" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Timestamp as a date/time when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimeMillis" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>Timestamp in msec when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="messageCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message code for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="message" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ord:order" minOccurs="0"/>
+				<xs:element ref="plan:plan" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="businessTransactionID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="orderRejectNotification">
+		<xs:annotation>
+			<xs:documentation>Notification for an order rejection.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderRef" type="xs:string"/>
+				<xs:choice>
+					<xs:element name="customerID" type="xs:string"/>
+					<xs:element name="subscriberID" type="xs:string"/>
+				</xs:choice>
+				<xs:element name="eventTimestamp" type="xs:dateTime"/>
+				<xs:element name="eventTimeMillis" type="xs:long"/>
+				<xs:element name="messageCode" type="xs:string"/>
+				<xs:element name="message" type="xs:string"/>
+				<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="planNotification">
+		<xs:annotation>
+			<xs:documentation>Notification for a change in plan status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Plan identifier for the changed plan.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order identifier for the changed plan.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order reference identifier for the changed plan.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="customerID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Customer ID for the order to which the changed plan belongs.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subscriberID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Subscriber ID for the order to which the changed plan belongs.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="status" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Current plan status.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="previousStatus" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Previous plan status.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimestamp" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Timestamp as date/time when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimeMillis" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>Timestamp in msec when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="messageCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message code for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="message" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ord:order" minOccurs="0"/>
+				<xs:element ref="plan:plan" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="businessTransactionID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="planDevelopmentNotification">
+		<xs:annotation>
+			<xs:documentation>Notification for a plan development request received by orchestrator.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planID" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Plan identifier for the developed plan.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order identifier for the developed plan.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order reference identifier for the developed plan.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="customerID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Customer ID for the order to which the developed plan belongs.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subscriberID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Subscriber ID for the order to which the developed plan belongs.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="status" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Current status of the order the plan is associated with.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimestamp" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Timestamp as a date/time when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimeMillis" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>Timestamp in msec when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="messageCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message code for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="message" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:choice>
+					<xs:element ref="aopd:aopdRequest"/>
+					<xs:element ref="msg:message" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="businessTransactionID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="planItemNotification">
+		<xs:annotation>
+			<xs:documentation>Notification for a change in plan item status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planItemID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Plan item identifier for the changed plan item.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="processComponentID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Plan fragment unique identifier for the changed plan item.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="processComponentName" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Plan fragment name for the changed plan item.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="processComponentVersion" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Plan fragment version for the changed plan item.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="processComponentType" type="xs:string" minOccurs="0"/>
+				<xs:element name="planID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Plan identifier for the plan that the changed plan item belongs.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order identifier for the changed plan item.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order reference identifier for the changed plan item.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderLine" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Order line associated with the changed plan item.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orderLineNumber" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Order line number associated with the changed plan item.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="eol" type="xs:boolean">
+								<xs:annotation>
+									<xs:documentation>End of line flag for the order line associated with the plan item. </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="customerID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Customer ID for the order that this plan item is associated with.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subscriberID" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Subscriber ID for the order that this plan item is associated with.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="status" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Current status of the plan item.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="previousStatus" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Previous status of the plan item.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimestamp" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Timestamp as a date/time when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimeMillis" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>Timestamp in msec when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="messageCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message code for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="message" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ord:order" minOccurs="0"/>
+				<xs:element ref="plan:plan" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="businessTransactionID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="planItemSLANotification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planItemID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Plan item identifier of the plan item in context.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="processComponentID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Plan fragment unique identifier of the plan item in context.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="processComponentName" type="xs:string" minOccurs="0"/>
+				<xs:element name="processComponentVersion" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Plan fragment version of the plan item in context.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="processComponentType" type="xs:string" minOccurs="0"/>
+				<xs:element name="planID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Plan identifier for the developed plan.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order identifier for the plan item in context.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order reference identifier of the developed plan.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="currentDuration" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>The current duration for which the plan item is in execution.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimestamp" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Timestamp as a date/time when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimeMillis" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>Timestamp in msec when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="messageCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message code for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="message" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="businessTransactionID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="udf">
+		<xs:annotation>
+			<xs:documentation>User defined field for a notification.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>User defined field name for a notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="value" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>User defined field value for a notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="orderAmendmentNotification">
+		<xs:annotation>
+			<xs:documentation>Notification for a change in order amendment status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="orderID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order identifier for the changed order.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="orderRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Order reference identifier for the changed order.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="status" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Current status of the order amendment.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="previousStatus" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Previous status of the order amendment.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimestamp" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Timestamp as a date/time when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimeMillis" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>Timestamp in msec when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="messageCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message code for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="message" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="udf" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ord:order" minOccurs="0"/>
+				<xs:element ref="plan:plan" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="businessTransactionID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="modelLoadingNotification">
+		<xs:annotation>
+			<xs:documentation>Notification for processing a model successfully.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="modelType" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Type of model which is processed successfully.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="modelID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Identifier for the model processed successfully.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="status" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Current status of the model processing.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimestamp" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Timestamp as a date/time when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventTimeMillis" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>Timestamp in msec when this event occurred.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="messageCode" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message code for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="message" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Message for the notification.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

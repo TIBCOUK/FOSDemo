@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:tns="http://simple.schema/planItemRequestHeader" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://simple.schema/planItemRequestHeader">
+  <xsd:element name="processComponentID" type="xsd:string"/>
+  <xsd:element name="processComponentName" type="xsd:string"/>
+  <xsd:element name="processComponentVersion" type="xsd:string"/>
+  <xsd:element name="processComponentType" type="xsd:string"/>
+  <xsd:element name="processComponentRecordType" type="xsd:string"/>
+  <xsd:element name="originator" type="xsd:string"/>
+</xsd:schema>

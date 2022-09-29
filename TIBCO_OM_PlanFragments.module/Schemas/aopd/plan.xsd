@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.tibco.com/aff/plan"
+	targetNamespace="http://www.tibco.com/aff/plan" xmlns:pf="http://www.tibco.com/aff/planfragments"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.1">
+	<xs:import namespace="http://www.tibco.com/aff/planfragments"
+		schemaLocation="PlanFragment.xsd" />
+	<!-- This plan schema element is to be used while returning the soap response -->
+	<xs:complexType name="planType">
+		<xs:annotation>
+			<xs:documentation>Plan type</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			
+			<xs:element name="planID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for the plan.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="orderID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Order ID that this plan is fulfilling.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="orderRef" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Order reference ID that this plan is fulfilling.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="originator" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Originator of the AOPD request that created this
+						plan.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="planCreationDate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Date and time when this plan was created.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Current status of the plan.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="statusChanged" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Date and time the status was last changed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Description for the plan.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="planStartDate" type="xs:dateTime"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date and time when the plan started executing.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="planStartMillis" type="xs:long"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Timestamp when the plan started executing.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isAmendment" type="xs:boolean"
+				minOccurs="0" />
+
+			<xs:element ref="planItem" maxOccurs="unbounded" />
+			<xs:element name="udf" type="udfType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+		<!-- </xs:complexType> -->
+	</xs:complexType>
+
+	
+		
+	<!-- Type to be used for soap response -->
+	<xs:element name="plan" type="planType" />
+
+
+
+	<xs:complexType name="planItemType">
+		<xs:annotation>
+			<xs:documentation>Plan item type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="planItemID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for the plan item within the
+						plan.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="planItemName" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Identifier for the plan item name(Product
+						Description) within the plan.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Description for the plan item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="planFragmentUniqueID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The id of the process component to invoke when
+						executing the plan item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="pf:planFragment" maxOccurs="1" minOccurs="0" />
+			<xs:element name="orderLine" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A list of order lines for this plan item.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="orderLineNumber" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Order line number for the order line
+									associated with the plan item.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="eol" type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation>End of line flag indicating that this plan
+									item is the last one for the specified order line number.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="action" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Action for the plan item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Status for the plan item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="statusChanged" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Timestamp as date/time when the plan item status
+						was changed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pcRequestType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of request that was send to the process component.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="milestone" type="milestoneType"
+				minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Intermediate milestone for the plan item.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parentID" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Plan Item Ids which are dependent on this plan item</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="childID" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Plan Item Ids on which this plan item depends</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="siblingID" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Plan Item Ids of sibling products for this plan
+						item</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dependentID" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Plan Item Ids of dependent products for this plan
+						item</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="startTimestamp" type="xs:long"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Timestamp that indicates when the plan item
+						started execution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endTimestamp" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Timestamp that indicates when the plan item
+						completed execution.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cancelled" type="xs:boolean" minOccurs="0" />
+			<xs:element name="isNonExecuting" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="isNoReciprocalAction" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="udf" type="udfType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="planItem" type="planItemType" />
+
+	<xs:complexType name="milestoneType">
+		<xs:annotation>
+			<xs:documentation>Milestone type</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="milestoneID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for this milestone within the
+						plan item and plan.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Description of the milestone.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ready" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates that the milestone is ready to fire.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="readyTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date and time when the milestone became ready.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Status for the milestone.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="statusChanged" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Date and time the milestone status was last
+						changed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dependency" type="dependencyType"
+				minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Dependency for this milestone before it can be
+						made ready.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="milestone" type="milestoneType" />
+
+	<xs:complexType name="dependencyType">
+		<xs:annotation>
+			<xs:documentation>Dependency type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dependencyID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique identifier for this dependency.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Type of dependency.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ready" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates that the dependency has been satisfied.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="readyTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Date and time the dependency was made ready.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Status of the dependency.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="statusChanged" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Date and time when the dependency status was last
+						changed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="timeDelta" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Time delta to apply to the dependency that will
+						delay marking the dependency as ready, in msec.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="external">
+					<xs:annotation>
+						<xs:documentation>External dependency type.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="eventName" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Name of the external event that satisfies
+										this dependency.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="eventID" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Unique identifier of the external event that
+										satisfies this dependency.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="eventTime" type="xs:dateTime" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Date and time the external event occurred
+										that satisfied this dependency.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="point">
+					<xs:annotation>
+						<xs:documentation>Point dependency type.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="planItemID" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>The plan item ID that uniquely identifies the
+										plan item that must reach a milestone for this dependency to
+										be satisfied.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="planID" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The plan ID for the plan item ID that
+										uniquely identifies the plan item that must reach a milestone
+										for this dependency to be satisfied. If omitted then the
+										current plan is assumed.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:choice>
+								<xs:element name="milestoneID" type="xs:string">
+									<xs:annotation>
+										<xs:documentation>The milestone ID within the plan item ID
+											that uniquely identifies the milestone that must fire this
+											dependency to be satisfied.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="end">
+									<xs:annotation>
+										<xs:documentation>The end milestone for a plan item.
+										</xs:documentation>
+									</xs:annotation>
+									<xs:complexType />
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="time">
+					<xs:annotation>
+						<xs:documentation>Time dependency type.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="absoluteTime" type="xs:dateTime"
+								minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The date and time that this dependency will
+										be satisfied.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="dependency" type="dependencyType" />
+
+
+    <xs:complexType name="udfType">
+		<xs:sequence>
+			<xs:element name="evaluationPriority" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="type" type="xs:string" minOccurs="0" />
+			<xs:element name="flavor" type="xs:string" minOccurs="0" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="value" type="xs:string" />
+			<xs:element name="originalValue" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="udf" type="udfType" />
+
+
+	<xs:complexType name="udfSetType">
+		<xs:sequence>
+			<xs:element name="evaluationPriority" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="type" type="xs:string" minOccurs="0" />
+			<xs:element name="flavor" type="xs:string" minOccurs="0" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="value" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="udfSet" type="udfSetType" />
+	
+	<xs:complexType name="planResultSetType">
+		<xs:sequence>
+			<xs:element name="currentPageNumber" type="xs:int"></xs:element>
+			<xs:element name="pagesize" type="xs:int"></xs:element>
+			<xs:element name="pagination" type="xs:int"></xs:element>
+			<xs:element name="totalRecordCount" type="xs:int"></xs:element>
+			<xs:element name="plan" type="planType" minOccurs="0"
+				maxOccurs="unbounded"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="planResultSet" type="planResultSetType" />
+
+	<!-- This plan schema type is to be used for the rest responses -->
+
+	<xs:element name="SetPlanItemRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="planID" type="xs:string" />
+				<xs:element name="planItem" type="planItemSetType" />
+				<xs:element name="replace" minOccurs="0">
+					<xs:complexType />
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="businessTransactionID" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="planItemSetType">
+		<xs:sequence>
+			<xs:element name="planItemID" type="xs:string" />
+			<xs:element name="planItemName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="udf" type="udfSetType" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="parentID" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="childID" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="siblingID" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="dependentID" type="xs:string" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

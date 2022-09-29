@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tibco.com/fos/ocs/model/subscriber"
+	xmlns:model="http://www.tibco.com/fos/ocs/model/subscriber"
+	elementFormDefault="qualified">
+	
+	<complexType name="SubscriberListType">
+		<sequence>
+			<element name="subscriber" form="qualified" type="model:SubscriberType" minOccurs="0" maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="SubscriberType">
+		<sequence>
+			<element name="id" type="string"/>
+			<element name="customerId" type="string"/>
+			<element name="firstName" type="string"/>
+			<element name="lastName" type="string"/>
+			<element name="memberSince" type="int"/>
+			<element name="invoiceAddress" form="qualified" type="model:AddressType" />
+			<element name="deliveryAddress" form="qualified" type="model:AddressType" />
+			<element name="closestStoreAddress" form="qualified" type="model:AddressType" />
+		</sequence>
+	</complexType>
+
+	<complexType name="AddressType">
+		<sequence>
+			<element name="line1" type="string" />
+			<element name="line2" type="string" />
+			<element name="locality" type="string" />
+			<element name="region" type="string" />
+			<element name="postCode" type="string" />
+			<element name="country" type="string" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="PaginationType">
+		<sequence>
+			<element name="startIndex" type="int" />
+			<element name="fetchSize" type="int" />
+		</sequence>
+	</complexType>
+</schema>

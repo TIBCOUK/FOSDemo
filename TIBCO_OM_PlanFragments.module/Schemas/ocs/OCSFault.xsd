@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tibco.com/fos/ocs/model/fault"
+	xmlns:model="http://www.tibco.com/fos/ocs/model/fault"
+	elementFormDefault="qualified">
+	
+	<complexType name="resultFault">
+		<sequence>
+			<element name="errorCode" minOccurs="1" type="string" />
+			<element name="description" type="string" />
+			<element name="message" type="string" />
+		</sequence>
+	</complexType>
+</schema>

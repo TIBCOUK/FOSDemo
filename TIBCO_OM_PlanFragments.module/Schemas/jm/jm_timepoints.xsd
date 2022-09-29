@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns="http://www.tibco.com/aff/applications/jm/timepoints"
+	 targetNamespace="http://www.tibco.com/aff/applications/jm/timepoints"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="start">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="predictedStart">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="requiredStart">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="typicalEnd">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="maximumEnd">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="predictedEnd">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="actualEnd">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="typicalRelease">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="maximumRelease">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="actualRelease">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="predictedRelease">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="release">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="requiredRelease">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:dateTime">
+					<xs:attribute name="timestamp" type="xs:long"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
