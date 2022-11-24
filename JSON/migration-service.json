@@ -1,0 +1,637 @@
+{
+  "appDescription": "Migration Service",
+  "categories": [
+    {
+      "categoryName": "Archival Database Configurations for 5.1.* Application",
+      "properties": [
+        {
+          "propName": "archivalDatasourceDriverClassName",
+          "propDescription": "Data Source Driver Name",
+          "propValue": "org.postgresql.Driver",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDatasourceValidationQuery",
+          "propDescription": "SQL query that will be used to validate connections",
+          "propValue": "SELECT 1",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsInitialSize",
+          "propDescription": "Number of connections that will be established when the connection pool is started",
+          "propValue": "10",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsMaxActive",
+          "propDescription": "Maximum number of active connections that can be allocated from this pool at the same time",
+          "propValue": "100",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsMaxIdle",
+          "propDescription": "Maximum number of connections that should be kept in the idle pool",
+          "propValue": "100",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsMaxWait",
+          "propDescription": "Maximum number of milliseconds that the pool will wait when there are no available connections",
+          "propValue": "10000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsMinIdle",
+          "propDescription": "Minimum number of connections that should be kept in the idle pool",
+          "propValue": "100",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsPassword",
+          "propDescription": "Data Source Password",
+          "propValue": "ENC(0yIDLwbMh07VvOWs4tFwDA==)",
+          "valueType": "password",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsTestOnBorrow",
+          "propDescription": "Enable connection validation before being borrowed from the pool",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsUrl",
+          "propDescription": "Data Source URL",
+          "propValue": "jdbc:postgresql://localhost:5432/archivaldbll?currentSchema=archivalschemall",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsUsername",
+          "propDescription": "Data Source Username",
+          "propValue": "archivaluserll",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalDsValidationInterval",
+          "propDescription": "Data source validation interval in milliseconds",
+          "propValue": "5000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalHibernateDialect",
+          "propDescription": "Hibernate Dialect",
+          "propValue": "org.hibernate.dialect.PostgreSQLDialect",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalHibernateDsDefaults",
+          "propDescription": "Enable Hibernate Metadata Defaults",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "archivalHibernateShowSql",
+          "propDescription": "Hibernate Show SQL",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        }
+      ]
+    },
+    {
+      "categoryName": "Data Source Configuration for 5.0.* Application",
+      "properties": [
+        {
+          "propName": "omsDsDriverClassName",
+          "propDescription": "Data Source Driver Class Name",
+          "propValue": "oracle.jdbc.driver.OracleDriver",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsInitialSize",
+          "propDescription": "Number of connections that will be established when the connection pool is started",
+          "propValue": "10",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsMaxActive",
+          "propDescription": "Maximum number of active connections that can be allocated from this pool at the same time",
+          "propValue": "100",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsMaxIdle",
+          "propDescription": "Maximum number of connections that should be kept in the idle pool",
+          "propValue": "100",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsMaxWait",
+          "propDescription": "Maximum number of milliseconds that the pool will wait when there are no available connections",
+          "propValue": "30000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsMinIdle",
+          "propDescription": "Minimum number of connections that should be kept in the idle pool",
+          "propValue": "100",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsPassword",
+          "propDescription": "Data Source Password",
+          "propValue": "ENC(iuGvcNQz8iS3QS1kSVGuwA==)",
+          "valueType": "password",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsTestOnBorrow",
+          "propDescription": "Enable connection validation before being borrowed from the pool",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsUrl",
+          "propDescription": "Data Source URL",
+          "propValue": "jdbc:oracle:thin:@//localhost:1521/orcl.apac.tibco.com",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsUsername",
+          "propDescription": "Data Source Username",
+          "propValue": "tenantpdb",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsValidationInterval",
+          "propDescription": "Data source validation interval in milliseconds",
+          "propValue": "5000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsDsValidationQuery",
+          "propDescription": "SQL query that will be used to validate connections",
+          "propValue": "select 1 from dual",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsHibernateDialect",
+          "propDescription": "Hibernate Dialect",
+          "propValue": "org.hibernate.dialect.Oracle10gDialect",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsHibernateDsDefaults",
+          "propDescription": "Enable Hibernate Metadata Defaults",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsHibernateShowSql",
+          "propDescription": "Hibernate Show SQL",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        }
+      ]
+    },
+    {
+      "categoryName": "Messaging Configuration",
+      "properties": [
+        {
+          "propName": "emsServerPassword",
+          "propDescription": "EMS Server Password",
+          "propValue": "ENC(T9aNk07NMsU=)",
+          "valueType": "password",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "emsServerURL",
+          "propDescription": "EMS Server URL",
+          "propValue": "tcp://localhost:7222",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "emsServerUsername",
+          "propDescription": "EMS Server User Name",
+          "propValue": "admin",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsOrdersSequencerSubmitOrder",
+          "propDescription": "Submit Order Sequencer Queue",
+          "propValue": "tibco.aff.oms.ordersSequencer.submitOrder",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "omsOrdersSequencerSubmitOrderReceiveTimeout",
+          "propDescription": "Submit Order Sequencer Queue Receive TimeOut in milliseconds",
+          "propValue": "1000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "securityProtocol",
+          "propDescription": "For SSL Configuration value should be ssl",
+          "propValue": "",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "sslEnableVerifyHost",
+          "propDescription": "For SSL enable verify host value should be false",
+          "propValue": "",
+          "valueType": "string",
+          "isTenantProperty": false
+        }
+      ]
+    },
+    {
+      "categoryName": "Migration Functional Configuration",
+      "properties": [
+        {
+          "propName": "com.tibco.archival.order.udf.searchkeys",
+          "propDescription": "Frequently searched Order UDF names in ordersByCriteria API",
+          "propValue": "OrderUDF",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "com.tibco.archival.orderline.udf.searchkeys",
+          "propDescription": "Frequently searched Order Line UDF names in ordersByCriteria API",
+          "propValue": "test",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "com.tibco.fom.orch.enableMilestoneReleaseDuringActivation",
+          "propDescription": "Enable Milestone Release during activation",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "com.tibco.fom.orch.enableOrderSequencing",
+          "propDescription": "Enable Migration of Sequenced Orders from 5.0.* Application",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "com.tibco.offlineMigration.migrateOrderInFinalState",
+          "propDescription": "Enable Migration of Orders in Final State",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "com.tibco.oms.legacy.tenantId",
+          "propDescription": "5.0.* Application Tenant ID to consider for order migration",
+          "propValue": "TIBCO",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "enableAuditTrail",
+          "propDescription": "Enable Migration of Audit Trail",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        }
+      ]
+    },
+    {
+      "categoryName": "Order Data Source Configuration for 5.1.* Application",
+      "properties": [
+        {
+          "propName": "orderDatasourceDriverClassName",
+          "propDescription": "Data Source Driver Class Name",
+          "propValue": "org.postgresql.Driver",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDatasourceValidationQuery",
+          "propDescription": "SQL query that will be used to validate connections",
+          "propValue": "SELECT 1",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsInitializeSize",
+          "propDescription": "Number of connections that will be established when the connection pool is started",
+          "propValue": "10",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsMaxActive",
+          "propDescription": "Maximum number of active connections that can be allocated from this pool at the same time",
+          "propValue": "100",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsMaxIdle",
+          "propDescription": "Maximum number of connections that should be kept in the idle pool",
+          "propValue": "100",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsMaxWait",
+          "propDescription": "Maximum number of milliseconds that the pool will wait when there are no available connections",
+          "propValue": "10000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsMinIdle",
+          "propDescription": "Minimum number of connections that should be kept in the idle pool",
+          "propValue": "100",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsPassword",
+          "propDescription": "Data Source Password",
+          "propValue": "ENC(ggSARhJXc9UFiJN4kS0rzQ==)",
+          "valueType": "password",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsTestOnBorrow",
+          "propDescription": "Enable connection validation before being borrowed from the pool",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsUrl",
+          "propDescription": "Data Source URL",
+          "propValue": "jdbc:postgresql://localhost:5432/orderdbll?currentSchema=orderschemall",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsUsername",
+          "propDescription": "Data Source Username",
+          "propValue": "orderuserll",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderDsValidationInterval",
+          "propDescription": "Data source validation interval in milliseconds",
+          "propValue": "5000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderHibernateDialect",
+          "propDescription": "Hibernate Dialect",
+          "propValue": "org.hibernate.dialect.PostgreSQLDialect",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderHibernateDsDefaults",
+          "propDescription": "Enable Hibernate Metadata Defaults",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderHibernateShowSql",
+          "propDescription": "Hibernate Show SQL",
+          "propValue": "false",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        }
+      ]
+    },
+    {
+      "categoryName": "Redis Data Source Configuration for 5.1.* Application",
+      "properties": [
+        {
+          "propName": "orderRedisClientName",
+          "propDescription": "Redis server ClientName for storing Order Related Information",
+          "propValue": "",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderRedisDatabase",
+          "propDescription": "Redis server Database name for storing Order Related Information",
+          "propValue": "",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderRedisHost",
+          "propDescription": "Redis Server Host for Storing Order Related Information",
+          "propValue": "localhost",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderRedisPassword",
+          "propDescription": "Password to connect to Redis Cluster/Node",
+          "propValue": "password",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderRedisPort",
+          "propDescription": "Redis Server Port for Storing Order Related Information",
+          "propValue": "6379",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "orderRedisUsername",
+          "propDescription": " Username to connect to Redis Cluster/Node",
+          "propValue": "",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisBlockedWhenExhausted",
+          "propDescription": "Enable connection blocking on borrow when connection pool is exhausted",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisClusterEnabled",
+          "propDescription": "Whether redis is running in Cluster Mode",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisJmxEnabled",
+          "propDescription": "Enabled JMX for connections",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisKeyStoreAbsoluteFilePath",
+          "propDescription": "Redis SSL KeyStore Absolute File Path",
+          "propValue": "C:/repository/Tibco_Projects/git_repo_LL/github/fos-framework-services/src/authorization-service/target/authorization-service/standalone/config/certificate/myhost.p12",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisKeyStorePassword",
+          "propDescription": "Redis SSL KeyStore Password",
+          "propValue": "tibco123",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisKeyStoreType",
+          "propDescription": "Redis SSL KeyStore Type",
+          "propValue": "pkcs12",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisLifo",
+          "propDescription": "Enable LIFO behaviour for idle objects. Always returning the most recently used object from the pool",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisMaxIdle",
+          "propDescription": "Maximum number of idle connections in the pool",
+          "propValue": "64",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisMaxTotal",
+          "propDescription": "Maximum number of connections that can be allocated by the pool at a given time",
+          "propValue": "64",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisMinEvictableIdleTimeMillis",
+          "propDescription": "Minimum amount of time in milliseconds an object may sit idle in the pool",
+          "propValue": "6000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisMinIdle",
+          "propDescription": "Minimum number of idle connections to maintain the pool",
+          "propValue": "16",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisNumTestsPerEvictionRun",
+          "propDescription": "Maximum number of connections to examine during each evictor run",
+          "propValue": "5",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisSoftMinEvictableIdleTimeMillis",
+          "propDescription": "Minimum amount of time in milliseconds an object may sit idle in the pool if minIdle instances are available",
+          "propValue": "3000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisSslEnabled",
+          "propDescription": "Connect to Redis Cluster/Node via SSL",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisTestOnBorrow",
+          "propDescription": "Enable connection validation before being borrowed from the pool",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisTestOnReturn",
+          "propDescription": "Enable connection validation before being returned to the pool",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisTestWhileIdle",
+          "propDescription": "Enable connection validation while idle in connection pool",
+          "propValue": "true",
+          "valueType": "boolean",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisTimeBetweenEvictionRunsMillis",
+          "propDescription": "Number of milliseconds to sleep between runs of the idle object evictor thread",
+          "propValue": "3000",
+          "valueType": "number",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisTrustStoreAbsoluteFilePath",
+          "propDescription": "Redis SSL TrustStore Absolute File Path",
+          "propValue": "C:/repository/Tibco_Projects/git_repo_LL/github/fos-framework-services/src/authorization-service/target/authorization-service/standalone/config/certificate/cacert",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisTrustStorePassword",
+          "propDescription": "Redis SSL TrustStore Password",
+          "propValue": "tibco123",
+          "valueType": "string",
+          "isTenantProperty": false
+        },
+        {
+          "propName": "redisTrustStoreType",
+          "propDescription": "Redis SSL TrustStore Type",
+          "propValue": "jks",
+          "valueType": "string",
+          "isTenantProperty": false
+        }
+      ]
+    }
+  ]
+}
