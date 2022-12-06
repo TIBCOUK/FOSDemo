@@ -848,7 +848,7 @@
         {
           "propName": "emsServerURL",
           "propDescription": "EMS Server URL",
-          "propValue": "tcp://1localhost:7222",
+          "propValue": "tcp://localhost:7222",
           "valueType": "string",
           "isTenantProperty": false
         },
