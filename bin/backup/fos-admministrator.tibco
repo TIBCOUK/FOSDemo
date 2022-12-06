@@ -1,0 +1,17 @@
+#!/bin/sh
+TIBCO_CLASSIC_HOME=/opt/tibco5
+BASEDIR=$(dirname "$0")
+INSTANCE="fos-administrator"
+BIN_DIR="$TIBCO_CLASSIC_HOME/administrator/domain/FOS/bin"
+RUNNER="./tibcoadmin_FOS"
+STOPPER=""
+PIDFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.log
+LOGDIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/logs"
+SEARCH_STRING="tibcoadmin_FOS"
+APPLOGFILE="$LOGDIR/Administrator.log"
+LOGFILES="Administrator.log*"
+MAINLOGFILE="Administrator.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

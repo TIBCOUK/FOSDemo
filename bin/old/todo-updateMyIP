@@ -1,0 +1,15 @@
+#!/bin/bash
+
+TIBCO_HOME=/opt/fos30/fosdemo
+CUR_IP=$( /sbin/ifconfig eth0 | grep -i 'inet ' | sed -e 's/^.*:\(.*\)\s\sBcast.*$/\1/' )
+echo "Updating config files by setting my IP $CUR_IP"
+
+files=(
+  /etc/hosts
+)
+
+for f in ${files[@]}
+do
+  echo $f
+  cat $f.template | sed -e "s/XXX\.XXX\.XXX\.XXX/$CUR_IP/" > $f
+done

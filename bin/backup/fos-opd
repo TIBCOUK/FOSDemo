@@ -1,0 +1,11 @@
+#!/bin/bash
+. /home/tibco/fc.env
+
+#export CATALINA_OPTS="-Xms1g -Xmx1g -XX:PermSize=512m -XX:MaxPermSize=512m -Xss128k"
+export CATALINA_OPTS="-Xms1g -Xmx1g  -Xss256k"
+cd /opt/apps/apache-tomcat-8.5.12/bin/
+
+nohup ./startup.sh &
+
+cd
+

@@ -1,0 +1,14 @@
+#Minio 
+sudo docker run -d -p 29000:9000 --name minio5 -v /opt/minio/data:/data -e "MINIO_ROOT_USER=minio" -e "MINIO_ROOT_PASSWORD=minio123" minio/minio server /data
+
+#Consul
+sudo docker run -d -p 8500:8500 --name=consul5 -e CONSUL_BIND_INTERFACE=eth0 consul:1.4.0
+
+#msg adapter
+sudo docker run -d --name msgadapter5 --add-host fosdemo:172.17.0.1 -e CONSOLE_LEVEL=INFO -e CONSUL_HOST=172.17.0.3 -e CONSUL_PORT=8500 -e JAVA_OPTS="-DemsUrl=tcp://172.17.0.1:7222 -DemsUsername=admin -DemsPassword=" -p 8090:8090 tibco/msgadapter:5.0
+
+# MLE
+sudo docker run -d --name mle5 -e CONSOLE_LEVEL=INFO -e CONSUL_HOST=172.17.0.3 -e CONSUL_PORT=8500 -p 18080:8080 tibco/mle:5.0
+
+#OPE
+sudo docker run -d --name ope5 -e CONSOLE_LEVEL=INFO -e CONSUL_HOST=172.17.0.3 -e CONSUL_PORT=8500 -p 19090:9090 tibco/ope:5.0

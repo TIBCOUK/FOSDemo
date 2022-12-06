@@ -1,0 +1,56 @@
+#!/bin/bash
+if [ "$FOMENVSET" = "1" ]; then
+#$1: action, $2: instance, $3: pidfile, $4: searchString, $5: binDir, $6: runner, $7: stopper, $8: logFile, $9: logDir, ${10}: logFiles, ${11}: mainLogFiles, ${12}: appLogFile
+#echo "1: $1, 2: $2, 3: $3, 4: $4, 5: $5, 6: $6, 7: $7, 8: $8, 9: $9, 10: ${10}, 11: ${11}, 12: ${12}"
+
+BASEDIR=$(dirname "$0")
+
+. ~/tibco.env
+. ~/fom.env
+if [ "$2" = "fos-fc" ] || [ "$2" = "fos-inv" ] || [ "$2" = "fos-opd" ]; then 
+   . ~/fc.env
+fi
+. $BASEDIR/functions
+
+mkdir -p $TIBCO_HOME/run/
+
+case "$1" in
+'start')
+	startApp "$2" "$3" "$4" "$5" "$6" "$8"
+	;;
+'stop')
+	stopApp "$2" "$3" "$4" "$5" "$7"
+	;;
+'restart')
+	stopApp "$2" "$3" "$4" "$5" "$7" "wait"
+	startApp "$2" "$3" "$4" "$5" "$6" "$8"
+	;;
+'status')
+	isRunning "$2" "$3" "$4"
+	;;
+'isRunning')
+	PID=getPID "$3" "$4"
+	if [ $PID ] ; then
+		exit $PID
+	else
+		exit 0
+	fi
+	;;
+'log')
+	showLog "$2" "$3" "$4" "${12}"
+	;;
+'ports')
+	showPorts "$2" "$3" "$4"
+	;;
+'clean')
+	clean "$2" "$3" "$4" "$9" "${10}" "${11}"
+	;;
+*)
+	echo "usage: $0 { start | stop | restart | status | log | ports | clean }"
+	;;
+esac
+exit 0
+else
+  echo "Set env variables for FOM before executing this script"
+  echo ". $HOME/fom.env"
+fi

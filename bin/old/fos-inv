@@ -1,0 +1,17 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="fos-inv"
+BIN_DIR="$FSI_HOME/tomcat/bin"
+RUNNER="./startup.sh"
+STOPPER="./shutdown.sh"
+PIDFILE=$TIBCO_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_HOME/run/$INSTANCE.log
+LOGDIR="$FSI_HOME/tomcat/logs"
+SEARCH_STRING="FsiMember1"
+APPLOGFILE="$LOGDIR/inv-local.log"
+LOGFILES="*.log*"
+MAINLOGFILE="*.log"
+
+$BASEDIR/sub/commands $1 $INSTANCE $PIDFILE $SEARCH_STRING $BIN_DIR $RUNNER $STOPPER $LOGFILE $LOGDIR $LOGFILES $MAINLOGFILE $APPLOGFILE
+exit 0

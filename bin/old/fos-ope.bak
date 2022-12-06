@@ -1,0 +1,17 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="fos-ope"
+BIN_DIR="$AF_HOME/roles/ope/standalone/bin"
+RUNNER="./start.sh"
+STOPPER="./stop.sh"
+PIDFILE=$TIBCO_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_HOME/run/$INSTANCE.log
+LOGDIR="$AF_HOME/roles/ope/standalone/logs"
+SEARCH_STRING="af/4.0/roles/ope"
+APPLOGFILE="$LOGDIR/ope-local.log"
+LOGFILES="*.log*"
+MAINLOGFILE="*.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

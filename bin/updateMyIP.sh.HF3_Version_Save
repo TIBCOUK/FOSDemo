@@ -1,0 +1,18 @@
+#!/bin/bash
+echo "Use this script to update the configurator config files to point to the external IP address"
+echo "This script will also update the opeadmindb with the external IP address to allow swagger authorization to work"
+echo "as well as the admindbllomhf3 database"
+
+EXTERNAL_IP=$(curl -s ident.me)
+#Update the application.properties file authorization_server_oauth_url for OPE Configurator
+#sed -i "/authorization_server_oauth_url=/c\authorization_server_oauth_url=http://$EXTERNAL_IP:9091/oauth/token" /opt/tibco/ope/5.1/roles/configurator/standalone/config/application.properties
+
+#Update the application.properties file authorization_server_oauth_url for OM Configurator
+#sed -i "/authorization_server_oauth_url=/c\authorization_server_oauth_url=http://$EXTERNAL_IP:9091/oauth/token" /opt/tibco/om/5.1/roles/configurator/standalone/config/application.properties
+
+#Update app_properties table, authorization_server_oauth_url field for the opeadmindb
+psql -U "postgres" -d "opeadmindb" -h "localhost" -p "5432" -v pg_tablespace="opeadminschema" -c "UPDATE app_properties SET value = 'http://$EXTERNAL_IP:9091/oauth/token' WHERE key='authorization_server_oauth_url'"
+
+
+#update app_properties table, for  om admindb
+psql -U "postgres" -d "admindbllomhf3" -h "localhost" -p "5432" -v pg_tablespace="adminschemallomhf3" -c "UPDATE app_properties SET value = 'http://$EXTERNAL_IP:9091/oauth/token' WHERE key='authorization_server_oauth_url'"

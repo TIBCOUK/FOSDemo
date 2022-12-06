@@ -1,0 +1,21 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="fos-opd"
+#BIN_DIR="/opt/apps/apache-tomcat-8.5.11/bin"
+BIN_DIR="/opt/apps/apache-tomcat-8.5.34/bin"
+RUNNER="./startup.sh"
+STOPPER="./shutdown.sh"
+PIDFILE=$TIBCO_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_HOME/run/$INSTANCE.log
+#LOGDIR="/opt/apps/apache-tomcat-8.5.11/logs"
+LOGDIR="/opt/apps/apache-tomcat-8.5.34/logs"
+#SEARCH_STRING="OPDMember1"
+SEARCH_STRING="OPD.log"
+SEARCH_STRING="app.dataVolume"
+APPLOGFILE="$LOGDIR/catalina.out"
+LOGFILES="*.log*"
+MAINLOGFILE="*.log"
+
+$BASEDIR/sub/commands $1 $INSTANCE $PIDFILE $SEARCH_STRING $BIN_DIR $RUNNER $STOPPER $LOGFILE $LOGDIR $LOGFILES $MAINLOGFILE $APPLOGFILE
+exit 0

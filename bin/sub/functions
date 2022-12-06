@@ -1,0 +1,130 @@
+
+function getPID() 
+{
+	local PIDFILE=$1
+	local PID
+	if [ -f $PIDFILE ] ; then
+		if test `ps -e | grep -c $(cat $PIDFILE)` != 0; then
+			PID=$(cat $PIDFILE)
+		fi
+	fi
+	
+	if [ -z "$PID" ] ; then
+		TEMP=`ps -Awo pid,command --sort lstart | egrep "$2" | grep -v grep | grep -v commands | tail -n 1 | awk '{print $1}'`
+		if [ "$TEMP" ] ; then
+			PID=$TEMP
+		fi
+	fi
+
+	echo $PID
+}
+
+function isRunning() 
+{
+	local INSTANCE=$1
+	local PIDFILE=$2
+	local PID=`getPID $2 $3`
+	local STATE
+	if [ "$PID" ] ; then
+		if [ -f $PIDFILE ] ; then
+			STATE="$INSTANCE running with PID: [$PID]"
+		else
+			STATE="$INSTANCE running in uncontrolled state with PID: [$PID]"
+		fi
+	else
+		STATE="$INSTANCE not running"
+	fi
+	
+	echo $STATE
+}
+
+function startApp() 
+{
+	local INSTANCE=$1
+	local PIDFILE=$2
+	local PID=`getPID $2 $3`
+	local BIN_DIR=$4
+	local RUNNER=$5
+	local LOGFILE=$6
+	if [ -z "$PID" ] ; then
+		echo "Starting $INSTANCE"
+		cd $BIN_DIR
+		nohup $RUNNER &> $LOGFILE &
+		sleep 1
+		ps -Awo pid,command --sort lstart | egrep "$3" | grep -v grep | tail -n 1 | awk '{print $1}' > $PIDFILE
+	else
+		echo "Not starting $INSTANCE - instance already running with PID: [$PID]"
+	fi
+}
+
+function stopApp() 
+{
+	local INSTANCE=$1
+	local PIDFILE=$2
+	local PID=`getPID $2 $3`
+	local BIN_DIR=$4
+	local STOPPER=$5
+	if [ "$PID" ] ; then
+		echo "Stopping $INSTANCE"
+		if [ "$STOPPER" ] ; then
+			cd $BIN_DIR
+			eval "$STOPPER" &> /dev/null
+		else
+			kill -15 $PID
+		fi
+		if [ "$6" ] ; then	
+			PID=`getPID $2 $3`
+			while [ "$PID" ]
+			do
+				echo "Still running with PID: $PID. Waiting 3 seconds..."
+				sleep 3
+				PID=`getPID $2 $3`	
+			done
+			echo "$INSTANCE stopped"
+		fi
+		if [ -f $PIDFILE ] ; then
+			rm  $PIDFILE
+		fi
+	else
+		echo "$INSTANCE is not running"
+	fi
+}
+
+function showLog() 
+{
+	local INSTANCE=$1
+	local PIDFILE=$2
+	local PID=`getPID $2 $3`
+	if [ "$PID" ] ; then
+		tail -n 100 -f $4
+	else
+		echo "$INSTANCE is not running"
+	fi
+}
+
+function showPorts() 
+{
+	local INSTANCE=$1
+	local PIDFILE=$2
+	local PID=`getPID $2 $3`
+	if [ "$PID" ] ; then
+		netstat -nlp | grep $PID
+	else
+		echo "$INSTANCE is not running"
+	fi
+}
+
+function clean() 
+{
+	local INSTANCE=$1
+	local PIDFILE=$2
+	local PID=`getPID $2 $3`
+	if [ "$PID" ] ; then
+		echo "$INSTANCE running with PID: [$PID] - cleaning archive files only"
+		if [ "$6" ] ; then
+			find "$4" -maxdepth 1 -type f -name "$5" ! -name "$6" -delete
+		fi
+	else
+		rm -f $4/$5
+	fi
+}

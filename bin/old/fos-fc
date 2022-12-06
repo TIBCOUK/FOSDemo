@@ -1,0 +1,18 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="fos-fc"
+BIN_DIR="$JBOSS_HOME/bin"
+RUNNER="./standalone.sh -b 0.0.0.0"
+STOPPER="./jboss-cli.sh --connect command=:shutdown"
+PIDFILE=$TIBCO_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_HOME/run/$INSTANCE.log
+#LOGDIR="/opt/tibco/"
+LOGDIR="$MQ_LOG"
+SEARCH_STRING="jboss"
+APPLOGFILE="$LOGDIR/elink.log"
+LOGFILES="*.log*"
+MAINLOGFILE="*.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

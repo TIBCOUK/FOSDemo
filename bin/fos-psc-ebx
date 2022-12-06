@@ -1,0 +1,18 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="fos-psc-ebx"
+BIN_DIR="$TIBCO_HOME/psc-ebx/1.2.0/apache-tomcat/bin"
+RUNNER="./startPSCServer.sh"
+STOPPER="./stopPSCServer.sh"
+PIDFILE=$TIBCO_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_HOME/run/$INSTANCE.log
+LOGDIR="$TIBCO_HOME/psc-ebx/1.2.0/apache-tomcat/logs"
+#LOGDIR="$MQ_LOG"
+SEARCH_STRING="localhost"
+APPLOGFILE="$LOGDIR/localhost*.log"
+LOGFILES="*.log*"
+MAINLOGFILE="*.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

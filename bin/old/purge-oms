@@ -1,0 +1,8 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+cd $AF_HOME/db/oracle/purge
+echo exit | sqlplus FOMOMS30/FOMOMS30 @$BASEDIR/sub/resetOpenOrders.sql  > /dev/null
+./OMS_purge_orders.sh COMPLETE 01-01-201000:00:00 01-01-202000:00:00 100 YES > /dev/null
+./OMS_purge_orders.sh CANCELLED 01-01-201000:00:00 01-01-202000:00:00 100 YES > /dev/null
+exit 0

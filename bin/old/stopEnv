@@ -1,0 +1,5 @@
+#!/bin/sh
+purge-ems
+fos stop
+extfos stop
+exit 0

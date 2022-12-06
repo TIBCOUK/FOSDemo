@@ -1,0 +1,9 @@
+#!/bin/bash
+case "$1" in
+ start | stop | restart | status | log | ports)
+ su tibco5 -c "/home/tibco5/bin/fos-administrator $1"
+ ;;
+*)
+ echo "usage: $0 { start | stop | restart | status | log | ports }"
+ ;;
+esac

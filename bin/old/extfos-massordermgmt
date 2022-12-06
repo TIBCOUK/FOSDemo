@@ -1,0 +1,17 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="extfos-massordermgmt"
+BIN_DIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/NorthboundServices"
+RUNNER="./NorthboundServices-MassOrderManagement.sh"
+STOPPER=""
+PIDFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.log
+LOGDIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/logs"
+SEARCH_STRING="NorthboundServices-MassOrderManagement.tra"
+APPLOGFILE="$LOGDIR/NorthboundServices-MassOrderManagement.log"
+LOGFILES="NorthboundServices-MassOrderManagement.log*"
+MAINLOGFILE="NorthboundServices-MassOrderManagement.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

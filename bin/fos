@@ -1,0 +1,117 @@
+#!/bin/bash
+TIBCO_HOME=/opt/tibco
+
+case "$1" in
+'start')
+		updateMyIP.sh
+		fos-ems $1
+		sleep 5
+		fos-authorization $1
+                sleep 20
+		fos-config $1
+		sleep 20
+                fos-configurator-ui $1
+                sleep 5  
+                fos-catalog-client $1
+		sleep 5
+		fos-ope-configurator $1
+		sleep 20
+		fos-data-service $1
+		sleep 5
+		fos-archival-service $1
+		sleep 5
+		fos-catalog-service $1
+		sleep 5
+		fos-orchestrator $1
+	        sleep 5
+		fos-aopd $1
+		sleep 5
+		fos-omsui $1
+		sleep 5
+		fos-migration $1
+		sleep 5
+		fos-ocs $1
+		sleep 5
+		fos-jeopardy $1
+		sleep 5
+		fos-tmf $1
+		sleep 30
+		fos-ope-catalog-service $1
+		sleep 5
+		fos-ope $1
+		sleep 5
+		fos-offersearchindex-service $1
+		sleep 5
+		fos-ope-shopping-cart $1
+		sleep 5
+		fos-psc-ebx $1
+		;;
+
+'stop')
+		fos-psc-ebx $1
+		fos-ope-shopping-cart $1
+		fos-offersearchindex-service $1
+		fos-ope $1
+		fos-ope-catalog-service $1
+		fos-ope-configurator $1
+		fos-tmf $1
+		fos-jeopardy $1
+		fos-ocs $1
+		fos-omsui $1
+		fos-migration $1
+		fos-aopd $1
+		fos-orchestrator $1
+		fos-catalog-service $1
+		fos-archival-service $1
+		fos-data-service $1
+                fos-catalog-client $1
+		fos-configurator-ui $1
+		fos-config $1
+		fos-authorization $1
+		fos-ems $1
+		;;
+
+'status')
+		fos-ems $1
+		fos-authorization $1
+		fos-config $1
+		fos-configurator-ui $1
+		fos-catalog-client $1
+		fos-data-service $1
+		fos-archival-service $1
+		fos-catalog-service $1
+		fos-orchestrator $1
+                fos-aopd $1
+                fos-omsui $1
+		fos-migration $1
+		fos-ocs $1
+                fos-jeopardy $1
+                fos-tmf $1
+		fos-ope-configurator $1
+		fos-ope-catalog-service $1
+		fos-ope $1
+		fos-offersearchindex-service $1
+		fos-ope-shopping-cart $1
+		fos-psc-ebx $1
+		;;
+'clean')
+		fos-ems $1
+		fos-fc $1
+#                fos-opd $1
+                fos-aopd $
+                fos-omsui $1
+		fos-fom $1
+                fos-ope $1
+		fos-inv $1
+		fos-ocs $1
+		;;
+'log')
+		tail -f $TIBCO_HOME/run/fos-*log
+		;;
+
+*)
+		echo "usage: $0 { start | stop | status | log }"
+		;;
+
+esac
+exit 0

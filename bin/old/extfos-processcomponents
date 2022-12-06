@@ -1,0 +1,18 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="extfos-processcomponents"
+BIN_DIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/ProcessComponents"
+RUNNER="./ProcessComponents-ProcessComponents.sh"
+STOPPER=""
+PIDFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.log
+LOGDIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/logs"
+SEARCH_STRING="ProcessComponents-ProcessComponents.tra"
+APPLOGFILE="$LOGDIR/ProcessComponents-ProcessComponents.log"
+LOGFILES="ProcessComponents-ProcessComponents.log*"
+MAINLOGFILE="ProcessComponents-ProcessComponents.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+
+exit 0

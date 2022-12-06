@@ -1,0 +1,7 @@
+#!/bin/bash
+EMS_HOME=/opt/tibco/ems/8.3
+EMS_CONFIG_DIR=/opt/tibco/envconfig/tibco/cfgmgmt/ems/data
+
+nohup $EMS_HOME/bin/tibemsd64 -config $EMS_CONFIG_DIR/tibemsd.conf &
+
+

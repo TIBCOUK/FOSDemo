@@ -1,0 +1,17 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="extfos-backendsimulator"
+BIN_DIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/BackendSimulator"
+RUNNER="./BackendSimulator-BackendSimulator.sh"
+STOPPER=""
+PIDFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.log
+LOGDIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/logs"
+SEARCH_STRING="BackendSimulator-BackendSimulator.tra"
+APPLOGFILE="$LOGDIR/BackendSimulator-BackendSimulator.log"
+LOGFILES="BackendSimulator-BackendSimulator.log*"
+MAINLOGFILE="BackendSimulator-BackendSimulator.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

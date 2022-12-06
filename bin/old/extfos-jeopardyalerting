@@ -1,0 +1,16 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="extfos-jeopardyalerting"
+BIN_DIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/JeopardyAlerting"
+RUNNER="./JeopardyAlerting-JeopardyAlerting.sh"
+STOPPER=""
+PIDFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.log
+LOGDIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/logs"
+SEARCH_STRING="JeopardyAlerting-JeopardyAlerting.tra"
+APPLOGFILE="$LOGDIR/Backend-BackendService.log"
+LOGFILES="JeopardyAlerting-JeopardyAlerting.log*"
+MAINLOGFILE="JeopardyAlerting-JeopardyAlerting.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"

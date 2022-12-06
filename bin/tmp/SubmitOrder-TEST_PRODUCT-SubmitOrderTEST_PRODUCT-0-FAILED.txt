@@ -1,0 +1,119 @@
+Status: FAILED
+Time Taken: 147
+Size: 0
+Timestamp: Tue Sep 23 12:25:45 CEST 2014
+TestStep: SubmitOrder-TEST_PRODUCT
+
+----------------- Messages ------------------------------
+org.apache.http.conn.HttpHostConnectException: Connection to http://localhost:18080 refused
+
+----------------- Properties ------------------------------
+Encoding: UTF-8
+Endpoint: http://localhost:18080/omsServer/api/orderService
+
+---------------- Request ---------------------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ord="http://www.tibco.com/aff/orderservice" xmlns:ord1="http://www.tibco.com/aff/order" xmlns:com="http://www.tibco.com/aff/commontypes">
+   <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+         <wsse:UsernameToken>
+            <wsse:Username>admin</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">admin</wsse:Password>
+         </wsse:UsernameToken>
+      </wsse:Security>
+      <wsa:Action>http://www.tibco.com/aff/service/soap/SubmitOrder</wsa:Action>
+   </soapenv:Header>
+   <soapenv:Body>
+      <ord:SubmitOrderRequest ExternalBusinessTransactionID="12345">
+         <ord:orderRequest>
+            <ord1:orderRef>ORDER_REF_1411467945682</ord1:orderRef>
+            <ord1:header>
+               <!--Optional:-->
+               <ord1:description>ORDER_REF_1411467945682</ord1:description>
+               <!--Optional:-->
+               <ord1:customerID>TIBCO</ord1:customerID>
+               <!--Optional:-->
+               <ord1:subscriberID>ABC</ord1:subscriberID>
+               <!--You have a CHOICE of the next 2 items at this level-->
+               <!--Optional:-->
+               <!--<ord1:requiredByDate>2011-05-16T13:20:00+05:30</ord1:requiredByDate>-->
+               <!--Optional:-->
+               <ord1:invoiceAddress>
+                  <com:line1>line1</com:line1>
+                  <!--Optional:-->
+                  <com:line2>line2</com:line2>
+                  <!--Optional:-->
+                  <com:line3>line3</com:line3>
+                  <com:locality>locality</com:locality>
+                  <!--Optional:-->
+                  <com:region>region</com:region>
+                  <com:country>US</com:country>
+                  <com:postCode>11111</com:postCode>
+                  <!--Optional:-->
+                  <com:supplementaryLocation>supplementaryLocation</com:supplementaryLocation>
+               </ord1:invoiceAddress>
+               <!--Optional:-->
+               <ord1:deliveryAddress>
+                  <com:line1>line1</com:line1>
+                  <!--Optional:-->
+                  <com:line2>line2</com:line2>
+                  <!--Optional:-->
+                  <com:line3>line3</com:line3>
+                  <com:locality>locality</com:locality>
+                  <!--Optional:-->
+                  <com:region>region</com:region>
+                  <com:country>US</com:country>
+                  <com:postCode>11111</com:postCode>
+                  <!--Optional:-->
+                  <com:supplementaryLocation>supplementaryLocation</com:supplementaryLocation>
+               </ord1:deliveryAddress>
+               <!--Optional:-->
+               <ord1:notes>notes</ord1:notes>
+               <!--Zero or more repetitions:-->
+               <ord1:slaID>SLAID_01</ord1:slaID>
+               <!--Zero or more repetitions:-->
+               <ord1:udf>
+                  <ord1:name>orderheaderUDF</ord1:name>
+                  <ord1:value>EMPTY</ord1:value>
+                  <!--Optional:-->
+               </ord1:udf>
+               <ord1:extension>
+                  <fulfilment>AFO</fulfilment>
+               </ord1:extension>
+            </ord1:header>
+            <!--1 or more repetitions:-->
+            <ord1:line>
+               <ord1:lineNumber>1</ord1:lineNumber>
+               <!--Optional:-->
+               <ord1:subscriberID>ABC</ord1:subscriberID>
+               <ord1:productID>TEST_PRODUCT</ord1:productID>
+               <!--Optional:-->
+               <ord1:productVersion>0.1</ord1:productVersion>
+               <ord1:quantity>1</ord1:quantity>
+               <ord1:uom>UOM</ord1:uom>
+               <!--Optional:-->
+               <ord1:deliveryAddress>
+                  <com:line1>line1</com:line1>
+                  <!--Optional:-->
+                  <com:line2>line2</com:line2>
+                  <com:line3>line3</com:line3>
+                  <com:locality>locality</com:locality>
+                  <com:region>region</com:region>
+                  <com:country>us</com:country>
+                  <com:postCode>11111</com:postCode>
+                  <com:supplementaryLocation>supplementaryLocation</com:supplementaryLocation>
+               </ord1:deliveryAddress>
+               <ord1:action>PROVIDE</ord1:action>
+               <ord1:actionMode>MOVE</ord1:actionMode>
+               <!--<ord1:requiredByDate>2011-05-16T13:20:00+05:30</ord1:requiredByDate>-->
+               <ord1:linkID>order1</ord1:linkID>
+               <ord1:inventoryID>1234567</ord1:inventoryID>
+               <ord1:notes>NOTES</ord1:notes>
+               <ord1:slaID>SLAID_01</ord1:slaID>
+            </ord1:line>
+         </ord:orderRequest>
+      </ord:SubmitOrderRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+---------------- Response --------------------------
+- missing response / garbage collected -

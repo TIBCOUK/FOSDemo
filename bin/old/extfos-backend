@@ -1,0 +1,16 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="extfos-backend"
+BIN_DIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/Backend"
+RUNNER="./Backend-BackendService.sh"
+STOPPER=""
+PIDFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.log
+LOGDIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/logs"
+SEARCH_STRING="Backend-BackendService.tra"
+APPLOGFILE="$LOGDIR/Backend-BackendService.log"
+LOGFILES="Backend-BackendService.log*"
+MAINLOGFILE="Backend-BackendService.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"

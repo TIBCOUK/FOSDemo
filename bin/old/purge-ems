@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd $EMS_HOME/bin/
+./tibemsadmin -server "tcp://localhost:7222" -user admin -password admin -script /home/fos30/bin/sub/purgeFOMQueues.txt > /dev/null
+exit 0

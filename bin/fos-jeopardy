@@ -1,0 +1,17 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="fos-jeopardy"
+BIN_DIR="$OM_HOME/roles/jeopardy/standalone/bin"
+RUNNER="./start.sh"
+STOPPER="./stop.sh"
+PIDFILE=$TIBCO_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_HOME/run/$INSTANCE.log
+LOGDIR="$OM_HOME/roles/jeopardy/standalone/logs"
+SEARCH_STRING="om/5.1/roles/jeopardy"
+APPLOGFILE="$LOGDIR/jeoms.log"
+LOGFILES="*.log*"
+MAINLOGFILE="*.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

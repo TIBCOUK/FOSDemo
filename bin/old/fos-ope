@@ -1,0 +1,39 @@
+#!/bin/bash
+
+case "$1" in
+'start')
+
+                sudo docker $1 minio5
+                sudo docker $1 consul5
+		consul kv import -http-addr=http://172.17.0.3:8500 @/opt/tibco/ope/5.0/samples/initial_configuration/consul_initial_configuration.json
+		sudo docker $1 msgadapter5
+                sudo docker $1 mle5
+                sudo docker $1 ope5
+                ;;
+'stop')     
+                sudo docker $1 ope5
+                sudo docker $1 mle5
+		sudo docker $1 msgadapter5
+                sudo docker $1 consul5
+                sudo docker $1 minio5             
+                ;;
+
+'status')
+                sudo docker ps
+                ;;
+'clean')
+                sudo docker rm ope5
+                sudo docker rm mle5
+		sudo docker $1 msgadapter5
+                sudo docker rm consul5
+                sudo docker rm minio5 
+                ;;
+
+*)
+                echo "usage: $0 { start | stop | status | clean}"
+                ;;
+
+esac
+
+exit 0
+

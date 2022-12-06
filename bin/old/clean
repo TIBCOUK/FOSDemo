@@ -1,0 +1,91 @@
+#!/bin/sh
+
+. ~/.bash_aliases
+
+if [ $FOMENVSET == "1" ]; then 
+    echo "Environment varibles defined"; 
+else 
+    echo "Stopping clean-up env not defined"; 
+    exit 1; 
+fi
+
+if [ "$1" = "init" ] ; then
+	action="y"
+else
+	fos status
+	extfos status
+	echo "Are you sure you want you delete all temp files [y|n][default:n]"
+	read action
+fi
+
+if [ "$action" = "y" ]
+then
+	echo "Cleaning logs..."
+
+        if [ -z "$OCS_LOGS" ]; then 
+          echo "OCS_LOGS is not defined ";
+        else 
+         echo "Clean-up OCS logfiles under $OCS_LOGS";
+	       rm -f $OCS_LOGS/*
+        fi
+
+        if [ -z "$OMS_LOGS" ]; then 
+          echo "OMS_LOGS is not defined ";
+        else 
+         echo "Clean-up OMS logfiles under $OMS_LOGS"
+	       rm -f $OMS_LOGS/*
+        fi
+        
+        if [ -z "$TRA_LOGS" ]; then 
+          echo "TRA_LOGS is not defined ";
+        else 
+         echo "Clean-up tra  logfiles under $TRA_LOGS"
+	       rm -f $TRA_LOGS/*
+        fi
+	
+        if [ -z "$FC_LOGS" ]; then 
+          echo "FC_LOGS is not defined ";
+        else 
+         echo "Clean-up mdm  logfiles under $FC_LOGS"
+	       rm -f $FC_LOGS/*
+        fi
+        
+        if [ -z "$ADMIN_LOGS" ]; then 
+          echo "ADMIN_LOGS is not defined ";
+        else 
+         echo "Clean-up  admin logfiles under $ADMIN_LOGS"
+	       rm -f $ADMIN_LOGS/*
+        fi
+	
+        if [ -z "$FSI_LOGS" ]; then 
+          echo "FSI_LOGS is not defined ";
+        else 
+         echo "Clean-up  fsi logfiles under $FSI_LOGS"
+	       rm -f $FSI_LOGS/*
+        fi
+	
+        echo " Clean-up JBOSS log files"
+        rm -f $JBOSS_HOME/standalone/log/*
+
+	echo "Cleaning temp files..."
+
+	truncate -s 0 ~/.bash_history
+	rm -f $TIBCO_HOME/run/*
+	rm -f $TIBCO_CLASSIC_HOME/run/*
+	find $TIBCO_HOME -name "nohup.out" -type f -delete
+	rm -fr ~/jeopardy/*
+	rm -fr ~/tdsdata/*
+	
+        find ~/offlinecatalog -name "*.xml" -type f -delete
+	find ~/offlinecatalog -name "*.zip" -type f -delete
+	
+        rm -fr /opt/apps/jboss-eap-6.4/standalone/tmp/vfs/*
+        echo "Cleanup  catlog files...."
+	cd /home/tibco/catalog/bin
+	./cleanupTempFolder.sh > /dev/null
+else
+	echo Cleanup skipped
+fi
+
+exit 0
+

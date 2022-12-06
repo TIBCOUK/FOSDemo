@@ -1,0 +1,12 @@
+#!/bin/sh
+clean init
+purge-ems
+fos start
+sleep 10
+extfos start
+echo "waiting 2 mins before publishing..."
+sleep 120
+cd ~/catalog/bin
+./republishOCS.sh
+./republishOMS.sh
+exit 0

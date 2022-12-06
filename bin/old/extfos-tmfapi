@@ -1,0 +1,17 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="extfos-tmfapi"
+BIN_DIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/NorthboundServices"
+RUNNER="./NorthboundServices-TMFApi.sh"
+STOPPER=""
+PIDFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_CLASSIC_HOME/run/$INSTANCE.log
+LOGDIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS/application/logs"
+SEARCH_STRING="NorthboundServices-TMFApi.tra"
+APPLOGFILE="$LOGDIR/NorthboundServices-TMFApi.log"
+LOGFILES="NorthboundServices-TMFApi.log*"
+MAINLOGFILE="NorthboundServices-TMFApi.log"
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

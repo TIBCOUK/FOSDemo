@@ -1,0 +1,18 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+INSTANCE="fos-aopd"
+BIN_DIR="$OM_HOME/roles/aopd/standalone/bin"
+RUNNER="./start.sh"
+STOPPER="./stop.sh"
+PIDFILE=$TIBCO_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_HOME/run/$INSTANCE.log
+LOGDIR="$OM_HOME/roles/aopd/standalone/logs"
+SEARCH_STRING="om/5.1/roles/aopd"
+APPLOGFILE="$LOGDIR/aopd.log"
+LOGFILES="*.log*"
+MAINLOGFILE="*.log"
+NODE_ID=
+
+$BASEDIR/sub/commands $1 "$INSTANCE" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

@@ -1,0 +1,45 @@
+#!/bin/bash
+TIBCO_HOME=/opt/tibco
+
+case "$1" in
+'start')
+	extfos-housekeeping $1
+	extfos-backend $1
+	extfos-backendsimulator $1
+	extfos-processcomponents $1
+	extfos-tmfapi $1
+	extfos-massordermgmt $1
+	extfos-jeopardyalerting $1
+	;;
+'stop')
+	extfos-housekeeping $1
+	extfos-backend $1
+	extfos-backendsimulator $1
+	extfos-processcomponents $1
+	extfos-tmfapi $1
+	extfos-massordermgmt $1
+	extfos-jeopardyalerting $1
+	;;
+'status')
+	extfos-housekeeping $1
+	extfos-backend $1
+	extfos-backendsimulator $1
+	extfos-processcomponents $1
+	extfos-tmfapi $1
+	extfos-massordermgmt $1
+	extfos-jeopardyalerting $1
+	;;
+'clean')
+	extfos-housekeeping $1
+	extfos-backend $1
+	extfos-backendsimulator $1
+	extfos-processcomponents $1
+	extfos-tmfapi $1
+	extfos-massordermgmt $1
+	extfos-jeopardyalerting $1
+	;;
+*)
+	echo "usage: $0 { start | stop | status | clean}"
+	;;
+esac
+exit 0

@@ -1,0 +1,108 @@
+#!/bin/bash
+INSTANCE="fos-hawk"
+TIBCO_CLASSIC_HOME=/opt/tibco5
+    
+RUNNER_DIR="$TIBCO_CLASSIC_HOME/tra/domain/FOS"
+RUNNER="./hawkagent_FOS"
+
+Pidfile=$TIBCO_CLASSIC_HOME/run/$INSTANCE.pid
+Logfile=$TIBCO_CLASSIC_HOME/run/$INSTANCE.log
+mkdir -p $TIBCO_CLASSIC_HOME/run/
+
+if [ -f $Pidfile ]
+then
+	Pid=`cat $Pidfile`
+fi
+
+case "$1" in
+'start')
+		if [ -f $Pidfile ] ; then
+				if test `ps -e | grep -c $Pid` = 1; then
+						echo "Not starting $INSTANCE - instance already running with PID: $Pid"
+				else
+						echo "Starting $INSTANCE"
+						cd $RUNNER_DIR
+						nohup $RUNNER &> $Logfile &
+						echo $! > $Pidfile
+				fi
+		else
+				echo "Starting $INSTANCE"
+				cd $RUNNER_DIR
+				nohup $RUNNER &> $Logfile &
+				echo $! > $Pidfile
+		fi
+		;;
+
+'stop')
+		if [ -f $Pidfile ] ; then
+				echo "stopping $INSTANCE"
+				kill -15 $Pid
+                                rm $Pidfile
+		else
+				echo "Cannot stop $INSTANCE - no Pidfile found! Check processes hawk agent and hawk hma"
+                                PIDHMA=`ps -edalf |grep tibhawkhma |grep -v grep | awk '{print $4}'`
+                                PIDAGT=`ps -edalf |grep hawkagent_FOS |grep -v grep | awk '{print $4}'`
+                                if [  -z "$PIDHMA" ]; then
+                                   echo "Process Hawk hma is not running"
+                                else
+                                   kill -15 $PIDHMA
+                                fi
+                                if [  -z "$PIDAGT" ]; then
+                                   echo "Process Hawk agent is not running"
+                                else
+                                   kill -15 $PIDAGT
+                                fi
+		fi
+		;;
+
+'restart')
+		$0 stop
+		sleep 5
+		$0 start
+		;;
+
+'status')
+		if [ -f $Pidfile ] ; then
+				if test `ps -e | grep -c $Pid` = 0; then
+						echo "$INSTANCE not running"
+				else
+						echo "$INSTANCE running with PID: [$Pid]"
+				fi
+		else
+				echo "$Pidfile does not exist! Cannot process $INSTANCE status!"
+				exit 1
+		fi
+		;;
+
+'log')
+		if [ -f $Pidfile ] ; then
+				if test `ps -e | grep -c $Pid` = 0; then
+						echo "$INSTANCE not running"
+				else
+						tail -n 100 -f  $Logfile
+				fi
+		else
+				echo "$Pidfile does not exist! Cannot process $INSTANCE status!"
+				exit 1
+		fi
+		;;
+
+'ports')
+		if [ -f $Pidfile ] ; then
+				if test `ps -e | grep -c $Pid` = 0; then
+						echo "$INSTANCE not running"
+				else
+						netstat -nlp | grep $Pid
+				fi
+		else
+				echo "$Pidfile does not exist! Cannot process $INSTANCE status!"
+				exit 1
+		fi
+		;;
+
+*)
+		echo "usage: $0 { start | stop | restart | status | log | ports }"
+		;;
+
+esac
+exit 0

@@ -1,0 +1,23 @@
+2021-11-23 12:43:30,270 INFO  [DefaultSoapUICore] Creating new settings at [/home/tibco/soapui-settings.xml]
+2021-11-23 12:43:31,209 INFO  [SoapUI] File [/home/tibco/soapui/OrderServiceHTTP-soapui-project.xml] does not exist, trying URL instead
+2021-11-23 12:43:31,209 ERROR [SoapUI] An error occurred [no protocol: /home/tibco/soapui/OrderServiceHTTP-soapui-project.xml], see error log for details
+2021-11-23 12:43:31,209 ERROR [errorlog] java.net.MalformedURLException: no protocol: /home/tibco/soapui/OrderServiceHTTP-soapui-project.xml
+java.net.MalformedURLException: no protocol: /home/tibco/soapui/OrderServiceHTTP-soapui-project.xml
+	at java.net.URL.<init>(URL.java:593)
+	at java.net.URL.<init>(URL.java:490)
+	at java.net.URL.<init>(URL.java:439)
+	at com.eviware.soapui.impl.wsdl.WsdlProject.<init>(WsdlProject.java:236)
+	at com.eviware.soapui.impl.wsdl.WsdlProjectFactory.createNew(WsdlProjectFactory.java:45)
+	at com.eviware.soapui.impl.wsdl.WsdlProjectFactory.createNew(WsdlProjectFactory.java:28)
+	at com.eviware.soapui.tools.SoapUITestCaseRunner.runRunner(SoapUITestCaseRunner.java:341)
+	at com.eviware.soapui.tools.AbstractSoapUIRunner.run(AbstractSoapUIRunner.java:162)
+	at com.eviware.soapui.tools.AbstractSoapUIRunner.runFromCommandLine(AbstractSoapUIRunner.java:93)
+	at com.eviware.soapui.tools.SoapUITestCaseRunner.main(SoapUITestCaseRunner.java:119)
+2021-11-23 12:43:31,297 ERROR [SoapUITestCaseRunner] java.lang.Exception: Failed to load SoapUI project file [/home/tibco/soapui/OrderServiceHTTP-soapui-project.xml]
+2021-11-23 12:43:31,297 ERROR [SoapUI] An error occurred [Failed to load SoapUI project file [/home/tibco/soapui/OrderServiceHTTP-soapui-project.xml]], see error log for details
+2021-11-23 12:43:31,297 ERROR [errorlog] java.lang.Exception: Failed to load SoapUI project file [/home/tibco/soapui/OrderServiceHTTP-soapui-project.xml]
+java.lang.Exception: Failed to load SoapUI project file [/home/tibco/soapui/OrderServiceHTTP-soapui-project.xml]
+	at com.eviware.soapui.tools.SoapUITestCaseRunner.runRunner(SoapUITestCaseRunner.java:345)
+	at com.eviware.soapui.tools.AbstractSoapUIRunner.run(AbstractSoapUIRunner.java:162)
+	at com.eviware.soapui.tools.AbstractSoapUIRunner.runFromCommandLine(AbstractSoapUIRunner.java:93)
+	at com.eviware.soapui.tools.SoapUITestCaseRunner.main(SoapUITestCaseRunner.java:119)
