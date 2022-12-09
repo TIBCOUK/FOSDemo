@@ -1848,14 +1848,16 @@
         <bpws:variable element="ns3:ErrorLinkHandlerFaultData"
             name="_error_post" sca-bpel:internal="true"/>
         <bpws:variable element="ns:ErrorReport" name="_error" sca-bpel:internal="true"/>
-        <bpws:variable element="ns2:ActivityInput" name="Log-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:ActivityInput"
+            name="BATCH_LOG-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns2:ActivityInput" name="Log1-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns2:ActivityInput" name="Log2-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns2:ActivityInput" name="Log3-input" sca-bpel:internal="true"/>
         <bpws:variable name="FaultName" sca-bpel:internal="true" type="xsd:string"/>
         <bpws:variable element="ns:OptionalErrorReport"
             name="_errorOptional" sca-bpel:internal="true"/>
-        <bpws:variable element="ns2:ActivityInput" name="Log4-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:ActivityInput"
+            name="BATCH_RESPONSE_LOG-input" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -2131,7 +2133,8 @@
                             </bpws:scope>
                             <bpws:extensionActivity>
                                 <tibex:activityExtension
-                                    inputVariable="Log-input" name="Log"
+                                    inputVariable="BATCH_LOG-input"
+                                    name="BATCH_LOG"
                                     tibex:xpdlId="7cce9b27-5fbc-44c8-8f75-83232a574687" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:targets>
                                     <bpws:target linkName="OnMessageStartToForEach"/>
@@ -2164,8 +2167,8 @@
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
                                 <tibex:activityExtension
-                                    inputVariable="Log4-input"
-                                    name="Log4"
+                                    inputVariable="BATCH_RESPONSE_LOG-input"
+                                    name="BATCH_RESPONSE_LOG"
                                     tibex:xpdlId="0f631348-b927-4669-a5d7-582b503f063b" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:targets>
                                     <bpws:target linkName="ForEachTopostOut"/>

@@ -2,6 +2,92 @@
 <repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
 	<globalVariables>
 		<globalVariable>
+			<name>JMSConnection</name>
+			<value></value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue></lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OrderManagerHost</name>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OAuthHost</name>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OAuthPort</name>
+			<value>#OAuthPort#</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Integer</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#OAuthPort#</lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OrderManagerPort</name>
+			<value>#OrderManagerPort#</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Integer</type>
+			<isOverride>true</isOverride>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#OrderManagerPort#</lookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OrderManagerClientID</name>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OrderManagerClientSecret</name>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Password</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OrderManagerTokenURL</name>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OrderManagementUserName</name>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>OrderManagementPassword</name>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Password</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//BW.APPNODE.NAME</name>
 			<value></value>
 			<deploymentSettable>false</deploymentSettable>
@@ -57,194 +143,103 @@
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//JMSConnection</name>
-			<value>%%JMSConnection%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//JMSConnection#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%JMSConnection%%</lookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>JMSConnection</name>
-			<value>tcp://108.129.16.224:7222</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>String</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>tcp://108.129.16.224:7222</lookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//JMSConnection#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//OrderManagerHost</name>
-			<value>%%OrderManagerHost%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//OrderManagerHost#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%OrderManagerHost%%</lookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//OrderManagerHost#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//OrderManagerPort</name>
-			<value>%%OrderManagerPort%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//OrderManagerPort#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>Integer</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%OrderManagerPort%%</lookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//OrderManagerPort#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//OrderManagerTokenURL</name>
-			<value>%%OrderManagerTokenURL%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//OrderManagerTokenURL#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%OrderManagerTokenURL%%</lookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//OrderManagerTokenURL#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//OrderManagerClientID</name>
-			<value>%%OrderManagerClientID%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//OrderManagerClientID#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%OrderManagerClientID%%</lookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//OrderManagerClientID#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//OrderManagerClientSecret</name>
-			<value>%%OrderManagerClientSecret%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//OrderManagerClientSecret#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>Password</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%OrderManagerClientSecret%%</lookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//OrderManagerClientSecret#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//OrderManagementUserName</name>
-			<value>%%OrderManagementUserName%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//OrderManagementUserName#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%OrderManagementUserName%%</lookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//OrderManagementUserName#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//OrderManagementPassword</name>
-			<value>%%OrderManagementPassword%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//OrderManagementPassword#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>Password</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%OrderManagementPassword%%</lookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//OrderManagementPassword#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//OAuthPort</name>
-			<value>%%OAuthPort%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//OAuthPort#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>Integer</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%OAuthPort%%</lookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//OAuthPort#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//OAuthHost</name>
-			<value>%%OAuthHost%%</value>
+			<value>#//TIBCO_OM_PlanFragments.module//OAuthHost#</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<isOverride>true</isOverride>
-			<useLookupValue>false</useLookupValue>
-			<lookupValue>%%OAuthHost%%</lookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>OrderManagerHost</name>
-			<value>108.129.16.224</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>String</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>OAuthHost</name>
-			<value>108.129.16.224</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>String</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>OAuthPort</name>
-			<value>9091</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>Integer</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>OrderManagerPort</name>
-			<value>9093</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>Integer</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>OrderManagerClientID</name>
-			<value>order-management-client</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>String</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>OrderManagerClientSecret</name>
-			<value>#!+R6reUTIZNwKiL7leB4WkdUYIXHGV2/7FDnyzSEN/3uXScQFVAKoivZztRe3h7z1LmlnPljQ5Ps=</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>Password</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>OrderManagerTokenURL</name>
-			<value>http://108.129.16.224:9091/oauth/token</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>String</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>OrderManagementUserName</name>
-			<value>admin@TIBCO</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>String</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
-		</globalVariable>
-		<globalVariable>
-			<name>OrderManagementPassword</name>
-			<value>#!X4acHiFqOTM4qFaGc5pIHmB/+nSkMh2u</value>
-			<deploymentSettable>false</deploymentSettable>
-			<serviceSettable>false</serviceSettable>
-			<type>Password</type>
-			<isOverride>false</isOverride>
-			<useLookupValue>false</useLookupValue>
+			<useLookupValue>true</useLookupValue>
+			<lookupValue>#//TIBCO_OM_PlanFragments.module//OAuthHost#</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TIBCO_OM_PlanFragments.module//BW.CLOUD.PORT</name>

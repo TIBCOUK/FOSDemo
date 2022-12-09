@@ -9,6 +9,9 @@
   </identitySet>
   <jndi:reference xmi:id="_GLfOsD2EEe2BlMx7jIYGmw" key="OauthConfigurationName" type="oauth:OauthConfiguration" value="tibco_om_planfragments.module.OAuthConfiguration"/>
   <jndi:configuration xsi:type="http:HttpClientConfiguration" xmi:id="_sIltgD2DEe2BlMx7jIYGmw" httpClientVersion="httpcomponents" useOauth="true">
-    <tcpDetails xmi:id="_sIltgT2DEe2BlMx7jIYGmw" host="63.35.170.252" port="9093"/>
+    <tcpDetails xmi:id="_sIltgT2DEe2BlMx7jIYGmw">
+      <substitutionBindings xmi:id="_8eNo0ElPEe2qrIm2gnpyNg" template="host" propName="OrderManagerHost"/>
+      <substitutionBindings xmi:id="_EIbigElQEe2qrIm2gnpyNg" template="port" propName="OrderManagerPort"/>
+    </tcpDetails>
   </jndi:configuration>
 </jndi:namedResource>

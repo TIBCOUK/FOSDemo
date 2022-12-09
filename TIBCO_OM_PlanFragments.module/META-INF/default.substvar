@@ -48,7 +48,7 @@
 		</globalVariable>
 		<globalVariable>
 			<name>JMSConnection</name>
-			<value>tcp://63.35.170.252:7222</value>
+			<value>tcp://108.129.16.224:7222</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
@@ -66,7 +66,7 @@
 		</globalVariable>
 		<globalVariable>
 			<name>OrderManagerHost</name>
-			<value>63.35.170.252</value>
+			<value>108.129.16.224</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
@@ -84,7 +84,7 @@
 		</globalVariable>
 		<globalVariable>
 			<name>OrderManagerTokenURL</name>
-			<value>http://63.35.170.252:9091/oauth/token</value>
+			<value>http://108.129.16.224:9091/oauth/token</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
@@ -111,7 +111,7 @@
 		</globalVariable>
 		<globalVariable>
 			<name>OrderManagementUserName</name>
-			<value>admin</value>
+			<value>admin@TIBCO</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
@@ -138,10 +138,19 @@
 		</globalVariable>
 		<globalVariable>
 			<name>OAuthHost</name>
-			<value>63.35.170.252</value>
+			<value>108.129.16.224</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
+			<isOverride>false</isOverride>
+			<useLookupValue>false</useLookupValue>
+		</globalVariable>
+		<globalVariable>
+			<name>BW.CLOUD.PORT</name>
+			<value>8080</value>
+			<deploymentSettable>false</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>Integer</type>
 			<isOverride>false</isOverride>
 			<useLookupValue>false</useLookupValue>
 		</globalVariable>

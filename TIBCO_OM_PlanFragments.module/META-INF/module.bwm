@@ -28,13 +28,20 @@
   <sca:property xmi:id="_ls5sMD1yEe2av6S00MCUJw" name="OrderManagementPassword" type="property:password" scaext:simpleValue="#!RpiHBYH+vVTBG4Aiv35JmQ==" publicAccess="true" scalable="true"/>
   <sca:property xmi:id="_AGFs0D17Ee2BlMx7jIYGmw" name="OAuthPort" type="XMLSchema:int" scaext:simpleValue="" publicAccess="true" scalable="true"/>
   <sca:property xmi:id="_BpyUMD17Ee2BlMx7jIYGmw" name="OAuthHost" type="XMLSchema:string" scaext:simpleValue="" publicAccess="true" scalable="true"/>
-  <sca:component xmi:id="_r3_mIExnEeyycbDFley2EQ" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_r4A0QExnEeyycbDFley2EQ" processName="tibco_om_stubs.module.planItem_execute_request_listener"/>
-  </sca:component>
+  <sca:property xmi:id="_5AIaYHecEe2S_LdVy-nSug" name="BW.CLOUD.PORT" type="XMLSchema:int" scalable="true"/>
   <sca:component xmi:id="_fjFdYD22Ee2e1-EdgVgKsw" name="ComponentFOSBatchOrderProcess" compositeext:version="1.0.0.qualifier">
     <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_fjFdYT22Ee2e1-EdgVgKsw" processName="tibco_om_stubs.module.FOSBatchOrderProcess"/>
     <sca:service xmi:id="_iQv9gD22Ee2e1-EdgVgKsw" name="order-submit">
       <sca:interface.wsdl xmi:id="_iQ5HcD22Ee2e1-EdgVgKsw" interface="http://xmlns.example.com/20220926181552PLT#wsdl.interface(order-submit)" scaext:wsdlLocation="../Processes/tibco_om_stubs/module/FOSBatchOrderProcess.bwp"/>
     </sca:service>
+  </sca:component>
+  <sca:component xmi:id="_5E88QEl2Ee2qrIm2gnpyNg" name="ComponentplanItem_cancel_request_listener" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_5E9jUEl2Ee2qrIm2gnpyNg" processName="tibco_om_stubs.module.generic_demo_planfragment_component"/>
+  </sca:component>
+  <sca:component xmi:id="_vl1M8F6fEe2F4IA5NHHfsA" name="Componentplan_item_suspend_request" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_vl1M8V6fEe2F4IA5NHHfsA" processName="tibco_om_stubs.module.plan_item_suspend_request"/>
+  </sca:component>
+  <sca:component xmi:id="_CaaJcF6kEe2F4IA5NHHfsA" name="Componentplan_item_activate_request" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_CaaJcV6kEe2F4IA5NHHfsA" processName="tibco_om_stubs.module.plan_item_activate_request"/>
   </sca:component>
 </sca:composite>
