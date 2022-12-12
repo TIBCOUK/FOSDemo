@@ -29,7 +29,6 @@ sed -i "/configuratorServiceUrl/c\configuratorServiceUrl=http://$EXTERNAL_IP:909
 
 
 
-
 ##################################
 # OPE Configuration - updates
 # 1.authorization_server_oauth_url
@@ -40,6 +39,14 @@ psql -U "postgres" -d "opeadmindb" -h "localhost" -p "5432" -v pg_tablespace="op
 
 
 
+##################################
+# bwce Configuration - updates
+##################################
+echo "Updating 'bwce-config.txt' file with $EXTERNAL_IP"
+sed -i "/JMSConnection=/c\JMSConnection=//TIBCO_OM_PlanFragments.module//JMSConnection=tcp://$EXTERNAL_IP:7222" ~/bin/bwce-config.txt
+sed -i "/OrderManagerHost=/c\OrderManagerHost=//TIBCO_OM_PlanFragments.module//OrderManagerHost=$EXTERNAL_IP" ~/bin/bwce-config.txt
+sed -i "/OrderManagerTokenURL=/c\OrderManagerTokenURL=//TIBCO_OM_PlanFragments.module//OrderManagerTokenURL=http://$EXTERNAL_IP:9091/oauth/token" ~/bin/bwce-config.txt
+sed -i "/OAuthHost/c\OAuthHost=//TIBCO_OM_PlanFragments.module//OAuthHost=$EXTERNAL_IP" ~/bin/bwce-config.txt
 
 
 
@@ -47,9 +54,5 @@ psql -U "postgres" -d "opeadmindb" -h "localhost" -p "5432" -v pg_tablespace="op
 
 
 
-
-
-#Update the application.properties file authorization_server_oauth_url for OPE Configurator
-#sed -i "/authorization_server_oauth_url=/c\authorization_server_oauth_url=http://$EXTERNAL_IP:9091/oauth/token" /opt/tibco/ope/5.1/roles/configurator/standalone/config/application.properties
 
 

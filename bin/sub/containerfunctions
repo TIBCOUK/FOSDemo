@@ -1,0 +1,98 @@
+
+function getContainerID() 
+{
+	local CONTAINERNAME=$1
+	docker ps
+}
+
+function isContainerRunning() 
+{
+        local CONTAINERNAME=$1
+	echo " "
+	echo "......fos-bwce ...."
+        #docker container stats $CONTAINERNAME
+	docker container list    
+}
+
+function inspectContainerApp()
+{
+        local CONTAINERNAME=$1
+        docker container inspect $CONTAINERNAME
+}
+
+function restartContainerApp()
+{
+        local CONTAINERNAME=$1
+        docker container restart $CONTAINERNAME
+}
+
+function configContainerApp()
+{
+        # No spaces allowed in config file
+        source ~/bin/bwce-config.txt
+
+        echo "//TIBCO_OM_PlanFragments.module//JMSConnection            = $JMSConnection"
+        echo "//TIBCO_OM_PlanFragments.module//OrderManagerHost         = $OrderManagerHost"
+        echo "//TIBCO_OM_PlanFragments.module//OrderManagerTokenURL     = $OrderManagerTokenURL"
+        echo "//TIBCO_OM_PlanFragments.module//OrderManagerClientID     = $OrderManagerClientID"
+        echo "//TIBCO_OM_PlanFragments.module//OrderManagerClientSecret = $OrderManagerClientSecret"
+        echo "//TIBCO_OM_PlanFragments.module//OrderManagementUserName  = $OrderManagementUserName"
+        echo "//TIBCO_OM_PlanFragments.module//OrderManagementPassword  = $OrderManagementPassword"
+        echo "//TIBCO_OM_PlanFragments.module//OAuthHost                = $OAuthHost"
+        echo "//TIBCO_OM_PlanFragments.module//OAuthPort                = $OAuthPort_process"
+        echo "//TIBCO_OM_PlanFragments.module//OrderManagerPort         = $OrderManagerPort_process"
+        echo "OAuthPort                                                 = $OAuthPort_application"
+        echo "OrderManagerPort                                          = $OrderManagerPort_application"
+}
+
+# start with '--rm' so that on 'stop' the Container is removed
+function startContainerApp() 
+{
+	# No spaces allowed in config file
+	source ~/bin/bwce-config.txt
+	echo "Starting $CONTAINERNAME"
+
+	docker run -it --rm --name fos-process-components --detach \
+	    -e BW_PROFILE=docker \
+            -e $JMSConnection \
+            -e $OrderManagerHost \
+            -e $OrderManagerTokenURL \
+            -e $OrderManagerClientID \
+            -e $OrderManagerClientSecret \
+            -e $OrderManagementUserName \
+            -e $OrderManagementPassword \
+            -e $OAuthHost \
+            -e $OAuthPort_process \
+            -e $OrderManagerPort_process \
+            -e $OAuthPort_application \
+            -e $OrderManagerPort_application \
+	fosear
+}
+
+function stopContainerApp() 
+{
+        local CONTAINERNAME=$1
+	echo "Stopping "
+        docker container stop  $CONTAINERNAME
+}
+
+function showContainerLog() 
+{
+	local CONTAINERNAME=$1	
+        docker container logs --follow $CONTAINERNAME
+}
+
+function showContainerPorts() 
+{
+        local CONTAINERNAME=$1
+        docker container port  $CONTAINERNAME
+	echo "See also 'fos-bwce Inspect'"
+}
+
+# No need to remove the container as it was started with '--rm' option
+function containerClean() 
+{
+        local CONTAINERNAME=$1
+        docker container stop  $CONTAINERNAME
+
+}

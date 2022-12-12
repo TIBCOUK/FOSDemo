@@ -1,0 +1,12 @@
+JMSConnection=//TIBCO_OM_PlanFragments.module//JMSConnection=tcp://108.129.16.224:7222
+OrderManagerHost=//TIBCO_OM_PlanFragments.module//OrderManagerHost=108.129.16.224
+OrderManagerTokenURL=//TIBCO_OM_PlanFragments.module//OrderManagerTokenURL=http://108.129.16.224:9091/oauth/token
+OrderManagerClientID=//TIBCO_OM_PlanFragments.module//OrderManagerClientID=order-management-client 
+OrderManagerClientSecret=//TIBCO_OM_PlanFragments.module//OrderManagerClientSecret=order-management-secret 
+OrderManagementUserName=//TIBCO_OM_PlanFragments.module//OrderManagementUserName=admin@TIBCO 
+OrderManagementPassword=//TIBCO_OM_PlanFragments.module//OrderManagementPassword=admin 
+OAuthHost=//TIBCO_OM_PlanFragments.module//OAuthHost=108.129.16.224
+OAuthPort_process=//TIBCO_OM_PlanFragments.module//OAuthPort=9091 
+OrderManagerPort_process=//TIBCO_OM_PlanFragments.module//OrderManagerPort=9093 
+OAuthPort_application=OAuthPort=9091 
+OrderManagerPort_application=OrderManagerPort=9093 

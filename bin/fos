@@ -1,9 +1,17 @@
 #!/bin/bash
+echo "########################################################"
+echo "# Remeber to put public ip sddress in AWS Security group"
+echo "########################################################"
 TIBCO_HOME=/opt/tibco
 
 case "$1" in
 'start')
 		updateMyIP.sh
+		echo ""
+echo "########################################################"
+echo "# Starting FOS components"
+echo "########################################################"
+
 		fos-ems $1
 		sleep 5
 		fos-authorization $1
@@ -45,6 +53,12 @@ case "$1" in
 		fos-ope-shopping-cart $1
 		sleep 5
 		fos-psc-ebx $1
+		sleep 5
+echo "########################################################"
+echo "# Starting BWCE Process Components "
+echo "########################################################"
+		fos-bwce start $1
+		sleep 5
 		;;
 
 'stop')
@@ -69,6 +83,7 @@ case "$1" in
 		fos-config $1
 		fos-authorization $1
 		fos-ems $1
+		fos-bwce $1
 		;;
 
 'status')
@@ -93,6 +108,7 @@ case "$1" in
 		fos-offersearchindex-service $1
 		fos-ope-shopping-cart $1
 		fos-psc-ebx $1
+		fos-bwce $1
 		;;
 'clean')
 		fos-ems $1
@@ -104,6 +120,7 @@ case "$1" in
                 fos-ope $1
 		fos-inv $1
 		fos-ocs $1
+		fos-bwce $1
 		;;
 'log')
 		tail -f $TIBCO_HOME/run/fos-*log

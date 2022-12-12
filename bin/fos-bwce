@@ -1,0 +1,17 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+CONTAINERNAME="fos-process-components"
+BIN_DIR="$EMS_HOME/bin"
+RUNNER="./tibemsd64"
+STOPPER=""
+PIDFILE=$TIBCO_HOME/run/$INSTANCE.pid
+LOGFILE=$TIBCO_HOME/run/$INSTANCE.log
+#LOGDIR="$TIBCO_HOME/config/FOS/tibco/cfgmgmt/ems/data/datastore"
+SEARCH_STRING="tibemsd64 -config"
+APPLOGFILE="$LOGDIR/logfile"
+LOGFILES="logfile"
+MAINLOGFILE=""
+
+$BASEDIR/sub/containercommands $1 "$CONTAINERNAME" "$PIDFILE" "$SEARCH_STRING" "$BIN_DIR" "$RUNNER" "$STOPPER" "$LOGFILE" "$LOGDIR" "$LOGFILES" "$MAINLOGFILE" "$APPLOGFILE"
+exit 0

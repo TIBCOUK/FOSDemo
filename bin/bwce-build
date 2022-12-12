@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Prerequisits
+# 1. All ems  xxx filders have been copied to from xxx to /bwce-docker/resource/addon/jars  has alcready been done
+# 2. Bwce studio ear file  (fosear.ear) that contains the Processe components has been copied to /home/ec2-user/fosear folder
+
+
+echo "################################"
+echo "# Build base BWCE container"
+echo "################################"
+
+
+# build base BWCE container
+cd  "/home/ec2-user/bwce-docker"
+./createDockerImage.sh ./resources/bwce-runtime/bwce-runtime-2.8.0.zip bwce:v2.8.0
+
+
+echo "################################"
+echo "# Build ear file into container"
+echo "################################"
+
+cd  "/home/ec2-user/fosear"
+# add in bwce EAR file
+docker build -t fosear .   
+
+
+# run the container
+# docker run fosear
+
+#docker run -it --name fos-process-components  -e BW_PROFILE=docker \
+#            -e //TIBCO_OM_PlanFragments.module//JMSConnection=tcp://108.129.16.224:7222 \
+#            -e //TIBCO_OM_PlanFragments.module//OrderManagerHost=108.129.16.224 \
+#            -e //TIBCO_OM_PlanFragments.module//OrderManagerTokenURL=http://108.129.16.224:9091/oauth/token \
+#            -e //TIBCO_OM_PlanFragments.module//OrderManagerClientID=order-management-client \
+#	    -e //TIBCO_OM_PlanFragments.module//OrderManagerClientSecret=order-management-secret \
+#            -e //TIBCO_OM_PlanFragments.module//OrderManagementUserName=admin@TIBCO \
+#            -e //TIBCO_OM_PlanFragments.module//OrderManagementPassword=admin \
+#            -e //TIBCO_OM_PlanFragments.module//OAuthPort=9091 \
+#            -e //TIBCO_OM_PlanFragments.module//OrderManagerPort=9093 \
+#            -e OAuthPort=9091 \
+#            -e OrderManagerPort=9093 \
+#            -e //TIBCO_OM_PlanFragments.module//OAuthHost=108.129.16.224 \
+#fosear
+
+
+# -e //TIBCO_OM_PlanFragments.module//OrderManagerPort=9093 \
